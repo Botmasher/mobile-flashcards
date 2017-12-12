@@ -18,30 +18,30 @@ The basic overview of the files/folders and list of dependencies go here.
 
 ### Components
 
+--------------
+# Project Details From Udacity:
 
-#Project Details From Udacity
-
-##Project Overview
+## Project Overview
 For the **UdaciCards** project, you will build a mobile application (Android or iOS - or both) that allows users to study collections of flashcards. The app will allow users to create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks.
 
-##Why this project?
+## Why this project?
 This project encompasses the fundamental aspects of building a native application including handling infinite lists, routing, and user input. By building this project, you will gain an understanding of how to use React Native to build an iOS and Android application.
 
-##Specification
+## Specification
 You'll create your project using **create-react-native-app**. There will be no starter code that you need to download.
 
 The specification provided below is the minimum required for this project. You may extend your project as you like, however.
 
-###Specific Requirements
-Use create-react-native-app to build your project.
-Allow users to create a deck which can hold an unlimited number of cards.
-Allow users to add a card to a specific deck.
-The front of the card should display the question.
-The back of the card should display the answer.
-Users should be able to quiz themselves on a specific deck and receive a score once they're done.
-Users should receive a notification to remind themselves to study if they haven't already for that day.
+### Specific Requirements
+- Use create-react-native-app to build your project.
+- Allow users to create a deck which can hold an unlimited number of cards.
+- Allow users to add a card to a specific deck.
+- The front of the card should display the question.
+- The back of the card should display the answer.
+- Users should be able to quiz themselves on a specific deck and receive a score once they're done.
+- Users should receive a notification to remind themselves to study if they haven't already for that day.
 
-###Views
+### Views
 Your application should have, at a minimum, five views.
 
 1. Deck List View (Default View)
@@ -52,11 +52,13 @@ Your application should have, at a minimum, five views.
   - displays the number of cards in the deck
   - displays an option to start a quiz on this specific deck
   - An option to add a new question to the deck
-3. Individual Deck View
-  - displays the title of the Deck
-  - displays the number of cards in the deck
-  - displays an option to start a quiz on this specific deck
-  - An option to add a new question to the deck
+3. Quiz View
+  - displays a card question
+  - an option to view the answer (flips the card)
+  - a "Correct" button
+  - an "Incorrect" button
+  - the number of cards left in the quiz
+  - Displays the percentage correct once the quiz is complete
 4. New Deck View
   - An option to enter in the title for the new deck
   - An option to submit the new deck title
@@ -65,7 +67,7 @@ Your application should have, at a minimum, five views.
   - An option to enter in the answer
   - An option to submit the new question
 
-###Data
+### Data
 We'll use `AsyncStorage` to store our decks and flashcards. Redux is optional for this project.
 
 Using `AsyncStorage` you'll manage an object whose shape is similar to this:
@@ -99,7 +101,7 @@ Using `AsyncStorage` you'll manage an object whose shape is similar to this:
 
 Notice each deck creates a new key on the object. Each deck has a `title` and a `questions` key. `title` is the title for the specific deck and `questions` is an array of questions and answers for that deck.
 
-###Tip
+### Tip
 To manage your `AsyncStorage` database, you'll want to create four different helper methods.
 
 `getDecks`: return all of the decks along with their titles, questions, and answers. 
