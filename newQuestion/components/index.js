@@ -1,10 +1,10 @@
-import { React } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-function NewDeck(props) {
+function NewQuestion(props) {
 	return (
 		<View style={styles.container}>
-			<Text>New Deck View</Text>
+			<Text>New Question View</Text>
 		</View>
 	);
 }
@@ -15,4 +15,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default NewDeck;
+export default NewQuestion;

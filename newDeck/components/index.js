@@ -1,10 +1,10 @@
-import { React } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-function Quiz(props) {
+function NewDeck(props) {
 	return (
 		<View style={styles.container}>
-			<Text>Quiz View</Text>
+			<Text>New Deck View</Text>
 		</View>
 	);
 }
@@ -15,4 +15,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default Quiz;
+export default NewDeck;

@@ -46,7 +46,6 @@
 - [ ] style components
 - [ ] add and update packages
 	- [ ] notifications and permissions
-	- [ ]
 - [ ] update README and TODO
 
 ## Testing

@@ -1,10 +1,10 @@
-import { React } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-function NewQuestion(props) {
+function Quiz(props) {
 	return (
 		<View style={styles.container}>
-			<Text>New Question View</Text>
+			<Text>Quiz View</Text>
 		</View>
 	);
 }
@@ -15,4 +15,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default NewQuestion;
+export default Quiz;
