@@ -6,6 +6,23 @@ import uuid from 'uuid/v4';
 const DECK_STORAGE_KEY = 'decks';
 const CARD_STORAGE_KEY = 'cards';
 
+function countCardsPerDeck (cards, decks={}) {
+	// Reduce over cardIds to store lists of cards per deck
+		// shape of resulting counts obj:  { deckId0: [cardId0, ... cardId_n], ... deckId_n: [cardId_0, ... cardId_n] }
+	const cardsPerDeck = Object.keys(cards).reduce((allDealtCards, cardId) => {
+		return {
+			...allDealtCards,
+			...cards[cardId].decks.reduce((decksWithThisCard, deckId) => {
+				return {
+					...decksWithThisCard,
+					[deckId]: allDealtCards[deckId] ? [...allDealtCards[deckId], cardId] : [cardId]
+				};
+			}, {})
+		};
+	}, {});
+	return (cardsPerDeck);
+}
+
 async function _fetchDecks (updateUI) {
 	// grab everything at all keys
 	//const allKeys = await AsyncStorage.getAllKeys();
@@ -19,7 +36,8 @@ async function _fetchDecks (updateUI) {
 }
 
 async function _fetchCards(updateUI) {
-	const cards = await JSON.parse(AsyncStorage.getItem(CARD_STORAGE_KEY)) || {};
+	const response = await AsyncStorage.getItem(CARD_STORAGE_KEY);
+	const cards =  await JSON.parse(response) || {};
 	updateUI(cards);
 }
 
@@ -33,6 +51,8 @@ async function _addDeck(decks, deckName, updateUI) {
 }
 
 async function _addCard(cards, deckId, question, answer, updateUI) {
+	// PROBLEM: what if there are no decks to add to? then what do you do with a card??
+	// 	- enforce adding to a single starter deck OR only possible to add through a deck's ui
 	const updatedCards = {
 		...cards,
 		[uuid()]: {
@@ -48,7 +68,7 @@ async function _addCard(cards, deckId, question, answer, updateUI) {
 async function _updateDeck(decks, deckId, name, updateUI) {
 	const updatedDecks = {
 		...decks,
-		[deckId]: deckName
+		[deckId]: name
 	};
 	await AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify(updatedDecks));
 	updateUI(updatedDecks);
@@ -75,7 +95,7 @@ async function _addCardToDeck(cards, cardId, deckId, updateUI) {
 		[cardId]: {
 			...oldCard,
 			decks: [
-				...oldCard.decks,
+				...oldCard.decks.filter(assignedDeck => assignedDeck !== deckId),
 				deckId
 			]
 		}
@@ -106,32 +126,55 @@ class DeckListContainer extends React.Component {
 		cards: {}
 	};
 	componentDidMount() {
-		this.fetchDecks(this.updateDecks);
+		this.fetchDecks();
+		this.fetchCards();
 	}
-	updateDecks = (decks={}) => {
+	setDecks = (decks={}) => {
 		this.setState({decks});
 	};
-	updateCards = (cards={}) => {
+	setCards = (cards={}) => {
 		this.setState({cards});
 	};
 	fetchDecks = () => {
-		_fetchDecks(this.updateDecks);
+		_fetchDecks(this.setDecks);
+	};
+	fetchCards = () => {
+		_fetchCards(this.setCards);
 	};
 	addDeck = (deckName) => {
-		_addDeck(this.state.decks, deckName, this.updateDecks);
+		_addDeck(this.state.decks, deckName, this.setDecks);
 	};
 	addCard = (deckId, question, answer) => {
-		_addCard(this.state.cards, deckId, question, answer, updateCards);
+		_addCard(this.state.cards, deckId, question, answer, this.setCards);
+	};
+	updateDeck = (deckId, newName) => {
+		_updateDeck(this.state.decks, deckId, newName, this.setDecks);
+	};
+	updateCard = (cardId, question=null, answer=null) => {
+		_updateCard(this.state.cards, cardId, this.setCards, question, answer);
 	};
 	clearDecks = () => {
-		_clearDecks(this.updateDecks);
+		_clearDecks(this.setDecks);
 	};
 	clearCards = () => {
-		_clearCards(this.updateCards);
-	}
+		_clearCards(this.setCards);
+	};
 	render() {
-		console.log(this.state.decks);
-		return <DeckList decks={this.state.decks} addDeck={this.addDeck} clearDecks={this.clearDecks} />;
+		const { decks, cards } = this.state;
+		const cardsPerDeck = countCardsPerDeck(cards);
+		return (
+			<DeckList
+				decks={decks}
+				cards={cards}
+				cardsPerDeck={cardsPerDeck}
+				addDeck={this.addDeck}
+				addCard={this.addCard}
+				updateDeck={this.updateDeck}
+				updateCard={this.updateCard}
+				clearDecks={this.clearDecks}
+				clearCards={this.clearCards}
+			/>
+		);
 	}
 }
 
