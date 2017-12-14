@@ -1,18 +1,27 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-const DeckList = (props) => (
-	<View style={styles.container}>
-		<Text>Deck List View (default view)</Text>
-		<TouchableOpacity style={styles.btn} onPress={() => props.addDeck(Math.random(), `adding deck named ${Math.random()}`)}>
-			<Text style={styles.btnTxt}>add an entry</Text>
-		</TouchableOpacity>
-		<TouchableOpacity style={styles.btn} onPress={() => props.clearDecks()}>
-			<Text style={styles.btnTxt}>clear entries</Text>
-		</TouchableOpacity>
-		{Object.keys(props.decks).map(deckId => <Text key={deckId}>{props.decks[deckId]}</Text>)}
-	</View>
-);
+const DeckList = (props) => {
+	const { decks, cards } = props;
+	const cardCounts = {};
+	Object.keys(cards).map(cardId => (cards.cardId.decks.map(deckId => (cardCounts.deckId = cardCounts.deckId ? cardCounts.deckId+1 : 0))));
+	return (
+		<View style={styles.container}>
+			<Text>Deck List View (default view)</Text>
+			<TouchableOpacity style={styles.btn} onPress={() => props.addDeck(Math.floor(Math.random()*10))}>
+				<Text style={styles.btnTxt}>add an entry</Text>
+			</TouchableOpacity>
+			<TouchableOpacity style={styles.btn} onPress={() => props.clearDecks()}>
+				<Text style={styles.btnTxt}>clear entries</Text>
+			</TouchableOpacity>
+
+			{Object.keys(decks).map(deckId => (
+				<Text key={deckId}>{decks.deckId} has {cards.filt} cards</Text>
+			))}
+
+		</View>
+	);
+};
 
 const styles = StyleSheet.create({
 	container: {
