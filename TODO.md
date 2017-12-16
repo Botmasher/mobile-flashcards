@@ -24,9 +24,9 @@
 	- [X] copy and update presentation component
 	- [X] update storage methods to set state properly
 - [ ] sketch basic UI
-	- [ ] Deck List View (Default View)
-	  - [ ] displays the title of each Deck
-	  - [ ] displays the number of cards in each deck
+	- [X] Deck List View (Default View)
+	  - [X] displays the title of each Deck
+	  - [X] displays the number of cards in each deck
 	- [ ] Individual Deck View
 	  - [ ] displays the title of the Deck
 	  - [ ] displays the number of cards in the deck
@@ -38,7 +38,7 @@
 		- [ ] a "Correct" button
 		- [ ] an "Incorrect" button
 		- [ ] the number of cards left in the quiz
-		- [ ] Displays the percentage correct once the quiz is completeIndividual Deck View
+		- [ ] Displays the percentage correct once the quiz is complete
 	- [ ] New Deck View
 	  - [ ] An option to enter in the title for the new deck
 	  - [ ] An option to submit the new deck title
@@ -46,8 +46,6 @@
 	  - [ ] An option to enter in the question
 	  - [ ] An option to enter in the answer
 	  - [ ] An option to submit the new question
-- [ ] routing/navigating between UI screens
-- [ ] add prop types
 - [ ] double check the project requirements list (top of this section)
 - [ ] check through Udacity React Native course lessons for important tasks missing here
 - [ ] plan out architecture of components and containers
@@ -58,9 +56,13 @@
 - [ ] update README and TODO as changes made during planning
 
 ## Build out
+- [ ] double check the project rubric
+- [ ] routing/navigating between UI screens
+- [ ] add prop types
 - [ ] break out helper methods
 	- [X] card counter
 	- [ ] sorting (or use selectors to sort)
+- [ ] scrolling through and loading long lists
 - [ ] introduce selectors
 - [ ] handle AsyncStorage API
 	- [X] break out imports + API keys + methods into utils/api.js
@@ -69,9 +71,10 @@
 - [ ] style components
 - [ ] add and update packages
 	- [ ] notifications and permissions
-- [ ] reread and adjust based on project requirements (beginning of planning above)
 - [ ] notifications for reminders to study that day
-- [ ] update README and TODO
+- [ ] reread and adjust based on project requirements (beginning of planning above)
+- [ ] double check the project rubric
+- [ ] update README and TODO based on changes made
 
 ## Test
 

@@ -12,7 +12,7 @@ function ComponentsTest(props) {
 	return (
 		<View style={styles.container}>
 			
-			<Text>Deck List View (default view)</Text>
+			<Text>Components Test</Text>
 			
 			<TouchableOpacity style={[styles.btn, styles.deckBtn]} onPress={() => props.addDeck(Math.floor(Math.random()*100))}>
 				<Text style={styles.btnTxt}>add a deck</Text>
@@ -46,7 +46,7 @@ function ComponentsTest(props) {
 				<Text style={styles.btnTxt}>clear cards</Text>
 			</TouchableOpacity>
 
-			{Object.keys(decks).sort().map(deckId => (
+			{/* Object.keys(decks).sort().map(deckId => (
 				<View key={deckId} style={{padding: 12}}>
 					<Text>
 						Deck {decks[deckId].name} has {cardsPerDeck[deckId] ? cardsPerDeck[deckId].length : 0} cards
@@ -58,7 +58,7 @@ function ComponentsTest(props) {
 						</View>
 					))}
 				</View>
-			))}
+			))*/}
 
 		</View>
 	);

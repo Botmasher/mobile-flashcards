@@ -1,30 +1,32 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { countCardsPerDeck } from '../../utils/helpers';
 
 function DeckList(props) {
-	const { decks, cards, cardsPerDeck } = props;
+	const { decks, cards, navigation } = props;
+	const cardsPerDeck = countCardsPerDeck(cards);
+	console.log(navigation);
 	return (
-		<View style={styles.container}>
-			
+		<View style={styles.container}>	
 			<Text>Deck List View (default view)</Text>
-
 			{Object.keys(decks).map(deckId => (
-				<View key={deckId} style={{padding: 12}}>
+				<TouchableOpacity
+					key={deckId}
+					onPress={() => (
+						navigation.navigate(
+							'Deck',
+							{ title: decks[deckId].name, cards }
+						)
+					)}
+				>
 					<Text>
 						Deck {decks[deckId].name} has {cardsPerDeck[deckId] ? cardsPerDeck[deckId].length : 0} cards
 					</Text>
-					{cardsPerDeck[deckId] && cardsPerDeck[deckId].map((cardId, i) => (
-						<View key={cardId}>
-							<Text>Question {i+1}: {cards[cardId].question}</Text>
-							<Text>Answer: {cards[cardId].answer}</Text>
-						</View>
-					))}
-				</View>
+				</TouchableOpacity>
 			))}
-
 		</View>
 	);
-};
+}
 
 const styles = StyleSheet.create({
 	container: {
@@ -32,21 +34,6 @@ const styles = StyleSheet.create({
 		marginTop: 30,
 		justifyContent: 'center',
 		alignItems: 'center'
-	},
-	btn: {
-		height: 40,
-		width: 150,
-		borderRadius: 10,
-		margin: 5,
-		padding: 15,
-		justifyContent: 'center',
-		alignItems: 'center'
-	},
-	btnTxt: {
-		color: 'white',
-		fontSize: 14,
-		fontWeight: 'bold',
-		textAlign: 'center'
 	}
 });
 
