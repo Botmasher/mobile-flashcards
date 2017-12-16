@@ -48,7 +48,7 @@ class ComponentsTestContainer extends React.Component {
 		_clearCards().then(() => this.setState({cards: {}}));
 	};
 	removeDeck = (deckId) => {
-		_removeDeck(deckId).then(data => this.setState({decks: data}));
+		_removeDeck(deckId).then(decksAndCardsData => this.setState(decksAndCardsData));
 	};
 	removeCard = (cardId) => {
 		_removeCard(cardId).then(data => this.setState({cards: data}));

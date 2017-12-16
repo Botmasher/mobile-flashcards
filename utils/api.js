@@ -104,14 +104,28 @@ export async function _clearAll () {
 	await AsyncStorage.multiRemove(allKeys);
 }
 
+// DRY this - use Card/Deck update
 export async function _removeDeck(deckId) {
-	const response = await AsyncStorage.getItem(DECK_STORAGE_KEY);
-	const decks = await JSON.parse(response) || {};
+	const decksResponse = await AsyncStorage.getItem(DECK_STORAGE_KEY);
+	const decks = await JSON.parse(decksResponse) || {};
 	const updatedDecks = Object.keys(decks)
 		.filter(id => id !== deckId)
 		.reduce((filteredDecks, id) => ({...filteredDecks, [id]: decks[id]}), {});
-	console.log(updatedDecks);
-	return updatedDecks;
+	await AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify(updatedDecks));
+	// also remove the deck from cards that have it
+	const cardsResponse = await AsyncStorage.getItem(CARD_STORAGE_KEY);
+	const cards = await JSON.parse(cardsResponse) || {};
+	const updatedCards = Object.keys(cards).reduce((deckedCards, cardId) => {
+		return {
+			...deckedCards,
+			[cardId]: {
+				...cards[cardId],
+				decks: cards[cardId].decks.filter(id => id !== deckId)
+			}
+		};
+	}, {});
+	await AsyncStorage.mergeItem(CARD_STORAGE_KEY, JSON.stringify(updatedCards));
+	return {decks: updatedDecks, cards: updatedCards};
 }
 
 export async function _removeCard(cardId) {
@@ -120,6 +134,6 @@ export async function _removeCard(cardId) {
 	const updatedCards = Object.keys(cards)
 		.filter(id => id !== cardId)
 		.reduce((filteredCards, id) => ({...filteredCards, [id]: cards[id]}), {});
-	console.log(updatedCards);
+	await AsyncStorage.mergeItem(CARD_STORAGE_KEY, JSON.stringify(updatedCards));
 	return updatedCards;
 }

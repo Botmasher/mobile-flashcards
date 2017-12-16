@@ -62,7 +62,10 @@
 	- [X] card counter
 	- [ ] sorting (or use selectors to sort)
 - [ ] introduce selectors
-- [X] break out async storage api keys and methods
+- [ ] handle AsyncStorage API
+	- [X] break out imports + API keys + methods into utils/api.js
+	- [X] on deck delete keep cards but remove the deck from card association
+	- [ ] DRY those repeated getItem and mergeItem calls in api.js
 - [ ] style components
 - [ ] add and update packages
 	- [ ] notifications and permissions
