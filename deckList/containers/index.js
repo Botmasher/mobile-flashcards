@@ -41,10 +41,10 @@ async function _fetchCards(updateUI) {
 	updateUI(cards);
 }
 
-async function _addDeck(decks, deckName, updateUI) {
+async function _addDeck(decks, name, updateUI) {
 	const updatedDecks = {
 		...decks,
-		[uuid()]: deckName
+		[uuid()]: {name}
 	};
 	await AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify(updatedDecks));
 	updateUI(updatedDecks);
@@ -68,7 +68,7 @@ async function _addCard(cards, deckId, question, answer, updateUI) {
 async function _updateDeck(decks, deckId, name, updateUI) {
 	const updatedDecks = {
 		...decks,
-		[deckId]: name
+		[deckId]: {name}
 	};
 	await AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify(updatedDecks));
 	updateUI(updatedDecks);

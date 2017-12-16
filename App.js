@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import DeckListContainer from './deckList/containers/';
+import ComponentsTestContainer from './componentsTest/containers/';
 
 export default class App extends React.Component {
   render() {
     return (
-      <DeckListContainer />
+      <ComponentsTestContainer />
     );
   }
 }
