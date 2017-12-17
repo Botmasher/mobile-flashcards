@@ -23,15 +23,19 @@
 	- [X] copy and update storage methods and container
 	- [X] copy and update presentation component
 	- [X] update storage methods to set state properly
+- [ ] basic routing/navigating between UI screens
+	- [X] stack navigation
+	- [X] check that navigation prop passes down to components
+	- [ ] check that deck/card props pass down to components
 - [ ] sketch basic UI
 	- [X] Deck List View (Default View)
 	  - [X] displays the title of each Deck
 	  - [X] displays the number of cards in each deck
-	- [ ] Individual Deck View
-	  - [ ] displays the title of the Deck
-	  - [ ] displays the number of cards in the deck
-	  - [ ] displays an option to start a quiz on this specific deck
-	  - [ ] An option to add a new question to the deck
+	- [X] Individual Deck View
+	  - [X] displays the title of the Deck
+	  - [X] displays the number of cards in the deck
+	  - [X] displays an option to start a quiz on this specific deck
+	  - [X] An option to add a new question to the deck
 	- [ ] Quiz View
 		- [ ] displays a card question
 		- [ ] an option to view the answer (flips the card)
@@ -57,7 +61,6 @@
 
 ## Build out
 - [ ] double check the project rubric
-- [ ] routing/navigating between UI screens
 - [ ] add prop types
 - [ ] break out helper methods
 	- [X] card counter

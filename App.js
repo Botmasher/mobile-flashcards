@@ -4,6 +4,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import ComponentsTestContainer from './componentsTest/containers/';
 import DeckListContainer from './deckList/containers';
 import DeckContainer from './deck/containers';
+import QuizContainer from './quiz/containers';
+import NewDeckContainer from './newDeck/containers';
+import NewQuestionContainer from './newQuestion/containers';
 
 const App = ({ navigation }) => (
   <DeckListContainer navigation={navigation} />
@@ -20,7 +23,16 @@ const ScreenNavigator = StackNavigator({
     screen: props => <DeckContainer {...props} />
   },
   ComponentsTest: {
-    screen: ComponentsTestContainer
+    screen: props => <ComponentsTestContainer {...props} />
+  },
+  Quiz: {
+    screen: props => <QuizContainer {...props} />
+  },
+  NewDeck: {
+    screen: props => <NewDeckContainer {...props} />
+  },
+  NewQuestion: {
+    screen: props => <NewQuestionContainer {...props} />
   }
 });
 

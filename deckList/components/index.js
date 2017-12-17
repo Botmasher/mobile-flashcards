@@ -14,7 +14,14 @@ function DeckList(props) {
 					onPress={() => (
 						navigation.navigate(
 							'Deck',
-							{ title: decks[deckId].name, cards }
+							{
+								title: decks[deckId].name,
+								cards: cardsPerDeck[deckId]
+									? cardsPerDeck[deckId].reduce((allDeckCards, cardId) => (
+											{...allDeckCards, [cardId]: cards[cardId]}
+										), {})
+									: {}
+							}
 						)
 					)}
 				>

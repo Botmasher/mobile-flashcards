@@ -30,16 +30,4 @@ class DeckListContainer extends React.Component {
 	}
 }
 
-// const DeckListContainer = ({ navigation }) => {
-// 	const decks = {};
-// 	const cards = {};
-// 	return (
-// 		<DeckList
-// 			decks={decks}
-// 			cards={cards}
-// 			navigation={navigation}
-// 		/>
-// 	);
-// }
-
 export default DeckListContainer;
