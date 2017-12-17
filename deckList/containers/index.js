@@ -19,13 +19,27 @@ class DeckListContainer extends React.Component {
 	};
 	render() {
 		const { decks, cards } = this.state;
+		const { navigation } = this.props;
 		return (
 			<DeckList
 				decks={decks}
 				cards={cards}
+				navigation={navigation}
 			/>
 		);
 	}
 }
+
+// const DeckListContainer = ({ navigation }) => {
+// 	const decks = {};
+// 	const cards = {};
+// 	return (
+// 		<DeckList
+// 			decks={decks}
+// 			cards={cards}
+// 			navigation={navigation}
+// 		/>
+// 	);
+// }
 
 export default DeckListContainer;

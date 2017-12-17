@@ -5,7 +5,6 @@ import { countCardsPerDeck } from '../../utils/helpers';
 function DeckList(props) {
 	const { decks, cards, navigation } = props;
 	const cardsPerDeck = countCardsPerDeck(cards);
-	console.log(navigation);
 	return (
 		<View style={styles.container}>	
 			<Text>Deck List View (default view)</Text>

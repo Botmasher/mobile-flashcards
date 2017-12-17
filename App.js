@@ -5,20 +5,19 @@ import ComponentsTestContainer from './componentsTest/containers/';
 import DeckListContainer from './deckList/containers';
 import DeckContainer from './deck/containers';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <ScreenNavigator />
-    );
-  }
-}
+const App = ({ navigation }) => (
+  <DeckListContainer navigation={navigation} />
+);
 
 const ScreenNavigator = StackNavigator({
   Home: {
+    screen: App
+  },
+  DeckList: {
     screen: props => <DeckListContainer {...props} />
   },
   Deck: {
-    screen: DeckContainer
+    screen: props => <DeckContainer {...props} />
   },
   ComponentsTest: {
     screen: ComponentsTestContainer
@@ -33,3 +32,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
 });
+
+export default ScreenNavigator;
