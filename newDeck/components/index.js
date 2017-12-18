@@ -1,11 +1,15 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
-function NewDeck(props) {
+function NewDeck({ navigation, text, handleInput, handleSubmit }) {
+	console.log(text);
 	return (
 		<View style={styles.container}>
 			<Text>New Deck View</Text>
-			<Input></Input>
+			<TextInput onChangeText={(text) => handleInput(text)} value={text} />
+			<TouchableOpacity onPress={(text) => handleSubmit(text)}>
+				<Text>Submit</Text>
+			</TouchableOpacity>
 		</View>
 	);
 }

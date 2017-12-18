@@ -36,16 +36,16 @@
 	  - [X] displays the number of cards in the deck
 	  - [X] displays an option to start a quiz on this specific deck
 	  - [X] An option to add a new question to the deck
-	- [ ] Quiz View
+	- [X] Quiz View
 		- [X] displays a card question
 		- [X] an option to view the answer (flips the card)
 		- [X] a "Correct" button
 		- [X] an "Incorrect" button
 		- [X] the number of cards left in the quiz
 		- [X] Displays the percentage correct once the quiz is complete
-	- [ ] New Deck View
-	  - [ ] An option to enter in the title for the new deck
-	  - [ ] An option to submit the new deck title
+	- [X] New Deck View
+	  - [X] An option to enter in the title for the new deck
+	  - [X] An option to submit the new deck title
 	- [ ] New Question View
 	  - [ ] An option to enter in the question
 	  - [ ] An option to enter in the answer
@@ -85,3 +85,4 @@
 
 ## Go beyond
 - [ ] ability to add card to multiple decks
+- [ ] naming/string collisions with currently existing decks and cards

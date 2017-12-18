@@ -14,7 +14,6 @@ export function dealCardsIntoDecks(cards) {
 			}, {})
 		};
 	}, {});
-	console.log(cardsPerDeck);
 	return cardsPerDeck;
 }
 
