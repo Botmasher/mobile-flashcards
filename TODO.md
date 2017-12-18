@@ -23,10 +23,10 @@
 	- [X] copy and update storage methods and container
 	- [X] copy and update presentation component
 	- [X] update storage methods to set state properly
-- [ ] basic routing/navigating between UI screens
+- [X] basic routing/navigating between UI screens
 	- [X] stack navigation
 	- [X] check that navigation prop passes down to components
-	- [ ] check that deck/card props pass down to components
+	- [X] check that deck/card props pass down to components
 - [ ] sketch basic UI
 	- [X] Deck List View (Default View)
 	  - [X] displays the title of each Deck
@@ -37,12 +37,12 @@
 	  - [X] displays an option to start a quiz on this specific deck
 	  - [X] An option to add a new question to the deck
 	- [ ] Quiz View
-		- [ ] displays a card question
-		- [ ] an option to view the answer (flips the card)
-		- [ ] a "Correct" button
-		- [ ] an "Incorrect" button
-		- [ ] the number of cards left in the quiz
-		- [ ] Displays the percentage correct once the quiz is complete
+		- [X] displays a card question
+		- [X] an option to view the answer (flips the card)
+		- [X] a "Correct" button
+		- [X] an "Incorrect" button
+		- [X] the number of cards left in the quiz
+		- [X] Displays the percentage correct once the quiz is complete
 	- [ ] New Deck View
 	  - [ ] An option to enter in the title for the new deck
 	  - [ ] An option to submit the new deck title
@@ -50,6 +50,8 @@
 	  - [ ] An option to enter in the question
 	  - [ ] An option to enter in the answer
 	  - [ ] An option to submit the new question
+- [X] check where to link to New Deck View screen
+	- [X] for now just link in DeckList
 - [ ] double check the project requirements list (top of this section)
 - [ ] check through Udacity React Native course lessons for important tasks missing here
 - [ ] plan out architecture of components and containers

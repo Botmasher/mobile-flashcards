@@ -2,11 +2,13 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { countCardsPerDeck } from '../../utils/helpers';
 
-function DeckList(props) {
-	const { decks, cards, navigation } = props;
+function DeckList({ decks, cards, navigation }) {
 	const cardsPerDeck = countCardsPerDeck(cards);
 	return (
-		<View style={styles.container}>	
+		<View style={styles.container}>
+			<TouchableOpacity onPress={() => navigation.navigate('NewDeck')}>
+				<Text>+ new deck</Text>
+			</TouchableOpacity>
 			<Text>Deck List View (default view)</Text>
 			{Object.keys(decks).map(deckId => (
 				<TouchableOpacity

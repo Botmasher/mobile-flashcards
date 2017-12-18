@@ -6,12 +6,9 @@ function Deck(props) {
 	return (
 		<View style={styles.container}>
 			<Text>Individual Deck View</Text>
+			<Text>Deck "{title}" contains {Object.keys(cards).length} cards.</Text>
 			<TouchableOpacity onPress={() => navigation.navigate('Quiz', {title, cards})}><Text>start quiz</Text></TouchableOpacity>
 			<TouchableOpacity onPress={() => navigation.navigate('NewQuestion')}><Text>add card</Text></TouchableOpacity>
-			<Text>Deck "{title}" contains {Object.keys(cards).length} cards:</Text>
-			{Object.keys(cards).map(cardId => (
-				<Text key={cardId}>{cards[cardId].question}</Text>
-			))}
 		</View>
 	);
 }

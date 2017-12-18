@@ -5,6 +5,7 @@ function NewDeck(props) {
 	return (
 		<View style={styles.container}>
 			<Text>New Deck View</Text>
+			<Input></Input>
 		</View>
 	);
 }
