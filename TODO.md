@@ -1,6 +1,6 @@
 # Mobile Flashcards task list
 
-## Plan and Sketch
+## Plan and sketch
 - [X] use create-react-native-app to build your project.
 - [X] test that the app starts and runs in Expo simulator
 - [X] consider project requirements
@@ -10,6 +10,7 @@
 	- The back of the card should display the answer.
 	- Users should be able to quiz themselves on a specific deck and receive a score once they're done.
 	- Users should receive a notification to remind themselves to study if they haven't already for that day.
+- [X] read through the project rubric
 - [X] plan basic project file and folder structure
 	- [X] modular by feature
 	- [X] separate out presentation vs state management
@@ -27,7 +28,7 @@
 	- [X] stack navigation
 	- [X] check that navigation prop passes down to components
 	- [X] check that deck/card props pass down to components
-- [X] sketch basic UI
+- [X] sketch basic UI to specifications
 	- [X] Deck List View (Default View)
 	  - [X] displays the title of each Deck
 	  - [X] displays the number of cards in each deck
@@ -53,14 +54,17 @@
 - [X] check where to link to New Deck View screen
 	- [X] for now just link in DeckList
 - [X] double check the project requirements list (top of this section)
+	- animation for card flipping not yet implemented
+	- notifications not yet implemented
 - [X] plan out architecture
 	- [X] adjustments to View sketches built above
 	- [X] break out subcomponents from those View sketches
 	- [X] plan utils
+	- see build section below for the added plans
 - [X] update README and TODO as changes made during planning
 
 ## Build out
-- [ ] double check the project rubric
+- [ ] read through the project rubric again
 - [ ] add prop types
 - [ ] break out helper methods
 	- [X] card counter
@@ -71,12 +75,35 @@
 	- [X] break out imports + API keys + methods into utils/api.js
 	- [X] on deck delete keep cards but remove the deck from card association
 	- [ ] DRY those repeated getItem and mergeItem calls in api.js
-- [ ] style components
+- [ ] options to modify decks
+	- [ ] edit a deck in Deck
+	- [ ] delete a deck in Deck
+- [ ] options to crud cards
+	- [ ] delete a card in Deck?
+	- [ ] edit a card in Deck?
+	- [ ] delete a card in Quiz
+	- [ ] edit a card in Quiz
+- [ ] modify DeckList to show deck
+- [ ] modify Deck to show deck
+- [ ] apply some rough styling
+	- [ ] clearly display buttons and text inputs
+	- [ ] display a card for the Q and A
+	- [ ] make it so that card flips between Q and A
+- [ ] break out subcomponents
+	- [ ] deck icon/display/img
+	- [ ] flippable card
+	- [ ] individual deck item within DeckList
+	- [ ] deck title and stats for Deck and Quiz and maybe NewQuestion
+	- [ ] add a deck
+	- [ ] add a card
+	- [ ] edit/delete control for a deck
+	- [ ] edit/delete control for a card
+- [ ] refine the styling
 - [ ] add and update packages
 	- [ ] notifications and permissions
 - [ ] notifications for reminders to study that day
 - [ ] reread and adjust based on project requirements (beginning of planning above)
-- [ ] double check the project rubric
+- [ ] again, check the project rubric
 - [ ] update README and TODO based on changes made
 
 ## Test
