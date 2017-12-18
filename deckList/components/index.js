@@ -1,37 +1,33 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { countCardsPerDeck } from '../../utils/helpers';
+import { countCardsPerDeck, dealCardsIntoDecks } from '../../utils/helpers';
 
 function DeckList({ decks, cards, navigation }) {
-	const cardsPerDeck = countCardsPerDeck(cards);
+	const cardsPerDeck = dealCardsIntoDecks(cards);
 	return (
 		<View style={styles.container}>
+			
 			<TouchableOpacity onPress={() => navigation.navigate('NewDeck')}>
 				<Text>+ new deck</Text>
 			</TouchableOpacity>
+
 			<Text>Deck List View (default view)</Text>
+			
 			{Object.keys(decks).map(deckId => (
 				<TouchableOpacity
 					key={deckId}
-					onPress={() => (
-						navigation.navigate(
-							'Deck',
-							{
-								title: decks[deckId].name,
-								cards: cardsPerDeck[deckId]
-									? cardsPerDeck[deckId].reduce((allDeckCards, cardId) => (
-											{...allDeckCards, [cardId]: cards[cardId]}
-										), {})
-									: {}
-							}
-						)
-					)}
-				>
+					onPress={() => (navigation.navigate('Deck', 
+						{
+							title: decks[deckId].name,
+							cards: cardsPerDeck[deckId] ? cardsPerDeck[deckId] : {}
+						}
+				))}>
 					<Text>
-						Deck {decks[deckId].name} has {cardsPerDeck[deckId] ? cardsPerDeck[deckId].length : 0} cards
+						Deck {decks[deckId].name} has {cardsPerDeck[deckId] ? Object.keys(cardsPerDeck[deckId]).length : 0} cards
 					</Text>
 				</TouchableOpacity>
 			))}
+
 		</View>
 	);
 }

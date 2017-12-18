@@ -1,16 +1,34 @@
-export function countCardsPerDeck (cards, decks={}) {
+export function dealCardsIntoDecks(cards) {
 	// Reduce over cardIds to store lists of cards per deck
-	// shape of resulting counts obj:  { deckId0: [cardId0, ... cardId_n], ... deckId_n: [cardId_0, ... cardId_n] }
+	// Returned object shape: { deckId0: {cardId_0 : {card_0}, ... }, ... }
 	const cardsPerDeck = Object.keys(cards).reduce((allDealtCards, cardId) => {
+		return {
+			...allDealtCards,
+			...cards[cardId].decks.reduce((decksWithCurrentCard, deckId) => {
+				const currentCard = {[cardId]: cards[cardId]};
+				const currentDeckCards = allDealtCards[deckId];
+				return {
+					...decksWithCurrentCard,
+					[deckId]: currentDeckCards ? {...currentDeckCards, ...currentCard} : currentCard
+				};
+			}, {})
+		};
+	}, {});
+	console.log(cardsPerDeck);
+	return cardsPerDeck;
+}
+
+export function countCardsPerDeck(cards) {
+	const cardCountsPerDeck = Object.keys(cards).reduce((allDealtCards, cardId) => {
 		return {
 			...allDealtCards,
 			...cards[cardId].decks.reduce((decksWithThisCard, deckId) => {
 				return {
 					...decksWithThisCard,
-					[deckId]: allDealtCards[deckId] ? [...allDealtCards[deckId], cardId] : [cardId]
+					[deckId]: allDealtCards[deckId] ? allDealtCards[deckId]+1 : 1
 				};
 			}, {})
 		};
 	}, {});
-	return cardsPerDeck;
+	return cardCountsPerDeck;
 }
