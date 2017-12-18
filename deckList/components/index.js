@@ -18,7 +18,7 @@ function DeckList({ decks, cards, navigation }) {
 					key={deckId}
 					onPress={() => (navigation.navigate('Deck', 
 						{
-							title: decks[deckId].name,
+							deck: decks[deckId],
 							cards: cardsPerDeck[deckId] ? cardsPerDeck[deckId] : {}
 						}
 				))}>

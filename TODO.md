@@ -27,7 +27,7 @@
 	- [X] stack navigation
 	- [X] check that navigation prop passes down to components
 	- [X] check that deck/card props pass down to components
-- [ ] sketch basic UI
+- [X] sketch basic UI
 	- [X] Deck List View (Default View)
 	  - [X] displays the title of each Deck
 	  - [X] displays the number of cards in each deck
@@ -46,20 +46,18 @@
 	- [X] New Deck View
 	  - [X] An option to enter in the title for the new deck
 	  - [X] An option to submit the new deck title
-	- [ ] New Question View
-	  - [ ] An option to enter in the question
-	  - [ ] An option to enter in the answer
-	  - [ ] An option to submit the new question
+	- [X] New Question View
+	  - [X] An option to enter in the question
+	  - [X] An option to enter in the answer
+	  - [X] An option to submit the new question
 - [X] check where to link to New Deck View screen
 	- [X] for now just link in DeckList
-- [ ] double check the project requirements list (top of this section)
-- [ ] check through Udacity React Native course lessons for important tasks missing here
-- [ ] plan out architecture of components and containers
-	- [ ] adjustments to View sketches built above
-	- [ ] break out subcomponents from those View sketches
-	- [ ] any needed new components
-- [ ] plan utils
-- [ ] update README and TODO as changes made during planning
+- [X] double check the project requirements list (top of this section)
+- [X] plan out architecture
+	- [X] adjustments to View sketches built above
+	- [X] break out subcomponents from those View sketches
+	- [X] plan utils
+- [X] update README and TODO as changes made during planning
 
 ## Build out
 - [ ] double check the project rubric
@@ -67,8 +65,8 @@
 - [ ] break out helper methods
 	- [X] card counter
 	- [ ] sorting (or use selectors to sort)
-- [ ] scrolling through and loading long lists
 - [ ] introduce selectors
+- [ ] scrolling through and loading long lists
 - [ ] handle AsyncStorage API
 	- [X] break out imports + API keys + methods into utils/api.js
 	- [X] on deck delete keep cards but remove the deck from card association

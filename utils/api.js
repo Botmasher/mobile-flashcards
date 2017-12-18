@@ -19,9 +19,11 @@ export async function _fetchCards() {
 export async function _addDeck(name) {
 	const response = await AsyncStorage.getItem(DECK_STORAGE_KEY);
 	const decks = await JSON.parse(response) || {};
+	const newDeckId = uuid();
 	const updatedDecks = {
 		...decks,
-		[uuid()]: {
+		[newDeckId]: {
+			id: newDeckId,
 			name,
 			timestamp: Date.now()
 		}
@@ -33,9 +35,11 @@ export async function _addDeck(name) {
 export async function _addCard(deckId, question, answer) {
 	const response = await AsyncStorage.getItem(CARD_STORAGE_KEY);
 	const cards = await JSON.parse(response) || {};
+	const newCardId = uuid();
 	const updatedCards = {
 		...cards,
-		[uuid()]: {
+		[newCardId]: {
+			id: newCardId,
 			question,
 			answer,
 			decks: [deckId],
