@@ -65,12 +65,12 @@
 
 ## Build out
 - [ ] read through the project rubric again
-- [ ] add prop types
-- [ ] break out helper methods
+- [X] add prop types
+- [X] break out prelim helper methods
 	- [X] card counter
-	- [ ] sorting (or use selectors to sort)
-- [ ] introduce selectors
-- [ ] scrolling through and loading long lists
+	- [X] sorting (or use selectors to sort)
+- [X] introduce selectors
+- [X] scrolling through and loading long lists - FlatList
 - [ ] handle AsyncStorage API
 	- [X] break out imports + API keys + methods into utils/api.js
 	- [X] on deck delete keep cards but remove the deck from card association
@@ -90,6 +90,7 @@
 	- [ ] display a card for the Q and A
 	- [ ] make it so that card flips between Q and A
 - [ ] break out subcomponents
+	- [ ] sorting picker for DeckList
 	- [ ] deck icon/display/img
 	- [ ] flippable card
 	- [ ] individual deck item within DeckList
@@ -110,4 +111,5 @@
 
 ## Go beyond
 - [ ] ability to add card to multiple decks
+- [ ] sorting options for decks and cards using existing selectors
 - [ ] naming/string collisions with currently existing decks and cards

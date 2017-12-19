@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import PropTypes from 'prop-types';
 
 function Quiz({ navigation, cards, score, flipped, numAnswered, updateScore, flipCard }) {
 	const cardCount = Object.keys(cards).length;
@@ -37,5 +38,15 @@ const styles = StyleSheet.create({
 		margin: 0
 	}
 });
+
+Quiz.propTypes = {
+	navigation: PropTypes.object.isRequired,
+	cards: PropTypes.object.isRequired,
+	score: PropTypes.number.isRequired,
+	flipped: PropTypes.bool.isRequired,
+	numAnswered: PropTypes.number.isRequired,
+	updateScore: PropTypes.func.isRequired,
+	flipCard: PropTypes.func.isRequired
+};
 
 export default Quiz;

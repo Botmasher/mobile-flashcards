@@ -1,36 +1,38 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { countCardsPerDeck, dealCardsIntoDecks } from '../../utils/helpers';
+import PropTypes from 'prop-types';
+
+const renderListItem = (deck, navigation, cardsPerDeck) => {
+	return (
+		<TouchableOpacity
+			key={deck.id}
+			onPress={() => (navigation.navigate('Deck', 
+				{
+					deck: deck,
+					cards: cardsPerDeck[deck.id] ? cardsPerDeck[deck.id] : {}
+				}
+		))}>
+			<Text key={deck.id}>
+				Deck {deck.name} has {cardsPerDeck[deck.id] ? Object.keys(cardsPerDeck[deck.id]).length : 0} cards
+			</Text>
+		</TouchableOpacity>
+	);
+};
 
 function DeckList({ decks, cards, navigation }) {
 	const cardsPerDeck = dealCardsIntoDecks(cards);
 	return (
 		<View style={styles.container}>
-			
 			<TouchableOpacity onPress={() => navigation.navigate('NewDeck')}>
 				<Text>+ new deck</Text>
 			</TouchableOpacity>
-
 			<Text>Deck List View (default view)</Text>
-			
-			{Object.keys(decks).map(deckId => (
-				<TouchableOpacity
-					key={deckId}
-					onPress={() => (navigation.navigate('Deck', 
-						{
-							deck: decks[deckId],
-							cards: cardsPerDeck[deckId] ? cardsPerDeck[deckId] : {}
-						}
-				))}>
-					<Text>
-						Deck {decks[deckId].name} has {cardsPerDeck[deckId] ? Object.keys(cardsPerDeck[deckId]).length : 0} cards
-					</Text>
-				</TouchableOpacity>
-			))}
-
+			<FlatList data={decks} renderItem={({item}) => renderListItem(item, navigation, cardsPerDeck)} keyExtractor={(item, i) => i} />
 		</View>
 	);
 }
+
 
 const styles = StyleSheet.create({
 	container: {
@@ -40,5 +42,11 @@ const styles = StyleSheet.create({
 		alignItems: 'center'
 	}
 });
+
+DeckList.propTypes = {
+	decks: PropTypes.array.isRequired,
+	cards: PropTypes.object.isRequired,
+	navigation: PropTypes.object.isRequired
+};
 
 export default DeckList;
