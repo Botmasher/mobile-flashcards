@@ -90,6 +90,7 @@
 	- [ ] display a card for the Q and A
 	- [ ] make it so that card flips between Q and A
 - [ ] break out subcomponents
+	- [ ] edit vs add in NewDeck
 	- [ ] sorting picker for DeckList
 	- [ ] deck icon/display/img
 	- [ ] flippable card

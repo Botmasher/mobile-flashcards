@@ -5,18 +5,25 @@ import PropTypes from 'prop-types';
 
 const renderListItem = (deck, navigation, cardsPerDeck) => {
 	return (
-		<TouchableOpacity
-			key={deck.id}
-			onPress={() => (navigation.navigate('Deck', 
-				{
-					deck: deck,
-					cards: cardsPerDeck[deck.id] ? cardsPerDeck[deck.id] : {}
-				}
-		))}>
-			<Text key={deck.id}>
-				Deck {deck.name} has {cardsPerDeck[deck.id] ? Object.keys(cardsPerDeck[deck.id]).length : 0} cards
-			</Text>
-		</TouchableOpacity>
+		<View key={deck.id}>
+			<TouchableOpacity
+				onPress={() => (navigation.navigate('Deck', 
+					{
+						deck: deck,
+						cards: cardsPerDeck[deck.id] ? cardsPerDeck[deck.id] : {}
+					}
+			))}>
+				<Text key={deck.id}>
+					Deck {deck.name} has {cardsPerDeck[deck.id] ? Object.keys(cardsPerDeck[deck.id]).length : 0} cards
+				</Text>
+			</TouchableOpacity>
+			<TouchableOpacity onPress={() => navigation.navigate('NewDeck', {text: deck.name, deckId: deck.id})}>
+			 <Text>+ edit this deck</Text>
+			</TouchableOpacity>
+			<TouchableOpacity onPress={() => navigation.navigate('NewDeck', {text: deck.name, deckId: deck.id})}>
+			 <Text>+ edit this deck</Text>
+			</TouchableOpacity>
+		</View>
 	);
 };
 

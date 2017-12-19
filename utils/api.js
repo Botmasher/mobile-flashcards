@@ -119,7 +119,6 @@ export async function _clearAll () {
 	await AsyncStorage.multiRemove(allKeys);
 }
 
-// DRY this - use Card/Deck update
 export async function _removeDeck(deckId) {
 	const decks = await _fetchDecks();
 	const updatedDecks = Object.keys(decks)

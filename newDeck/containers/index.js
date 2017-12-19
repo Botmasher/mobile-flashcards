@@ -1,22 +1,27 @@
 import React from 'react';
 import NewDeck from '../components/';
-import { _addDeck } from '../../utils/api';
+import { _addDeck, _updateDeck, _removeDeck } from '../../utils/api';
 import PropTypes from 'prop-types';
 
 class NewDeckContainer extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			text: ''
+			text: '',
+			edited: false
 		};
 	}
-	handleInput = text => this.setState({text});
+	handleInput = text => this.setState({text, edited: true});
 	handleSubmit = () => {
-		_addDeck(this.state.text.trim()).then(() => this.props.navigation.navigate('Home'));
+		if (!this.props.navigation.state.params.deckId) {
+			_addDeck(this.state.text.trim()).then(() => this.props.navigation.navigate('Home'));
+		} else {
+			_updateDeck(this.props.navigation.state.params.deckId, this.state.text.trim()).then(() => this.props.navigation.navigate('Home'));
+		}
 	}
 	render() {
 		const { navigation } = this.props;
-		const { text } = this.state;
+		const { text } = !this.state.edited && navigation.state.params.text ? navigation.state.params : this.state;
 		return (
 			<NewDeck navigation={navigation} text={text} handleInput={this.handleInput} handleSubmit={this.handleSubmit} />
 		);
@@ -24,7 +29,8 @@ class NewDeckContainer extends React.Component {
 }
 
 NewDeckContainer.propTypes = {
-	navigation: PropTypes.object
+	navigation: PropTypes.object.isRequired,
+	deckId: PropTypes.string
 };
 
 export default NewDeckContainer;
