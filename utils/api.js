@@ -4,21 +4,36 @@ import uuid from 'uuid/v4';
 export const DECK_STORAGE_KEY = 'decks';
 export const CARD_STORAGE_KEY = 'cards';
 
+async function _fetch (storageKey) {
+  const response = await AsyncStorage.getItem(storageKey);
+  const data = await JSON.parse(response) || {};
+  return data;
+}
+
+async function _merge(storageKey, updatedData) {
+	await AsyncStorage.mergeItem(storageKey, JSON.stringify(updatedData));
+}
+
 export async function _fetchDecks () {
-  const response = await AsyncStorage.getItem(DECK_STORAGE_KEY);
-  const decks = await JSON.parse(response) || {};
-  return decks;
+	const decks = await _fetch(DECK_STORAGE_KEY);
+	return decks;
 }
 
 export async function _fetchCards() {
-	const response = await AsyncStorage.getItem(CARD_STORAGE_KEY);
-	const cards =  await JSON.parse(response) || {};
+	const cards = await _fetch(CARD_STORAGE_KEY);
 	return cards;
 }
 
+async function _mergeCards(cards) {
+	await _merge(CARD_STORAGE_KEY, cards);
+}
+
+async function _mergeDecks(decks) {
+	await _merge(DECK_STORAGE_KEY, decks);
+}
+
 export async function _addDeck(name) {
-	const response = await AsyncStorage.getItem(DECK_STORAGE_KEY);
-	const decks = await JSON.parse(response) || {};
+	const decks = await _fetchDecks();
 	const newDeckId = uuid();
 	const updatedDecks = {
 		...decks,
@@ -28,13 +43,12 @@ export async function _addDeck(name) {
 			timestamp: Date.now()
 		}
 	};
-	await AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify(updatedDecks));
+	await _mergeDecks(updatedDecks);
 	return updatedDecks;
 }
 
 export async function _addCard(deckId, question, answer) {
-	const response = await AsyncStorage.getItem(CARD_STORAGE_KEY);
-	const cards = await JSON.parse(response) || {};
+	const cards = await _fetchCards();
 	const newCardId = uuid();
 	const updatedCards = {
 		...cards,
@@ -46,24 +60,22 @@ export async function _addCard(deckId, question, answer) {
 			timestamp: Date.now()
 		}
 	};
-	await AsyncStorage.mergeItem(CARD_STORAGE_KEY, JSON.stringify(updatedCards));
+	await _mergeCards(updatedCards);
 	return updatedCards;
 }
 
 export async function _updateDeck(deckId, name) {
-	const response = await AsyncStorage.getItem(DECK_STORAGE_KEY);
-	const decks = await JSON.parse(response) || {};
+	const decks = await _fetchDecks();
 	const updatedDecks = {
 		...decks,
 		[deckId]: {name}
 	};
-	await AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify(updatedDecks));
+	await _mergeDecks(updatedDecks);
 	return updatedDecks;
 }
 
 export async function _updateCard(cardId, question=null, answer=null) {
-	const response = await AsyncStorage.getItem(CARD_STORAGE_KEY);
-	const cards = await JSON.parse(response) || {};
+	const cards = await _fetchCards();
 	const oldCard = cards[cardId];
 	const updatedCards = {
 		...cards,
@@ -73,13 +85,12 @@ export async function _updateCard(cardId, question=null, answer=null) {
 			answer: answer ? answer : oldCard.answer
 		}
 	};
-	await AsyncStorage.mergeItem(CARD_STORAGE_KEY, JSON.stringify(updatedCards));
+	await _mergeCards(updatedCards);
 	return updatedCards;
 }
 
 export async function _addCardToDeck(cardId, deckId) {
-	const response = await AsyncStorage.getItem(CARD_STORAGE_KEY);
-	const cards = await JSON.parse(response) || {};
+	const cards = _fetchCards();
 	const oldCard = cards[cardId];
 	const updatedCards = {
 		...cards,
@@ -91,7 +102,7 @@ export async function _addCardToDeck(cardId, deckId) {
 			]
 		}
 	};
-	await AsyncStorage.mergeItem(CARD_STORAGE_KEY, JSON.stringify(updatedCards));
+	await _mergeCards(updatedCards);
 	return updatedCards;
 }
 
@@ -110,15 +121,13 @@ export async function _clearAll () {
 
 // DRY this - use Card/Deck update
 export async function _removeDeck(deckId) {
-	const decksResponse = await AsyncStorage.getItem(DECK_STORAGE_KEY);
-	const decks = await JSON.parse(decksResponse) || {};
+	const decks = await _fetchDecks();
 	const updatedDecks = Object.keys(decks)
 		.filter(id => id !== deckId)
 		.reduce((filteredDecks, id) => ({...filteredDecks, [id]: decks[id]}), {});
-	await AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify(updatedDecks));
+	await _mergeDecks(updatedDecks);
 	// also remove the deck from cards that have it
-	const cardsResponse = await AsyncStorage.getItem(CARD_STORAGE_KEY);
-	const cards = await JSON.parse(cardsResponse) || {};
+	const cards = await _fetchCards();
 	const updatedCards = Object.keys(cards).reduce((deckedCards, cardId) => {
 		return {
 			...deckedCards,
@@ -128,16 +137,15 @@ export async function _removeDeck(deckId) {
 			}
 		};
 	}, {});
-	await AsyncStorage.mergeItem(CARD_STORAGE_KEY, JSON.stringify(updatedCards));
+	await _mergeCards(updatedCards);
 	return {decks: updatedDecks, cards: updatedCards};
 }
 
 export async function _removeCard(cardId) {
-	const response = await AsyncStorage.getItem(CARD_STORAGE_KEY);
-	const cards = await JSON.parse(response) || {};
+	const cards = await _fetchCards();
 	const updatedCards = Object.keys(cards)
 		.filter(id => id !== cardId)
 		.reduce((filteredCards, id) => ({...filteredCards, [id]: cards[id]}), {});
-	await AsyncStorage.mergeItem(CARD_STORAGE_KEY, JSON.stringify(updatedCards));
+	await _mergeCards(updatedCards);
 	return updatedCards;
 }

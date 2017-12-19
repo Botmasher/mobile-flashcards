@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 
 function NewDeck({ navigation, text, handleInput, handleSubmit }) {
-	console.log(text);
 	return (
 		<View style={styles.container}>
 			<Text>New Deck View</Text>
@@ -19,5 +19,12 @@ const styles = StyleSheet.create({
 		margin: 0
 	}
 });
+
+NewDeck.propTypes = {
+	navigation: PropTypes.object,
+	text: PropTypes.string,
+	handleInput: PropTypes.func,
+	handleSubmit: PropTypes.func
+};
 
 export default NewDeck;

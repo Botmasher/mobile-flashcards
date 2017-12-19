@@ -1,6 +1,7 @@
 import React from 'react';
 import NewQuestion from '../components';
 import { _addCard } from '../../utils/api';
+import PropTypes from 'prop-types';
 
 class NewQuestionContainer extends React.Component {
 	constructor(props) {
@@ -39,5 +40,9 @@ class NewQuestionContainer extends React.Component {
 		);
 	}
 }
+
+NewQuestionContainer.propTypes = {
+	navigation: PropTypes.object
+};
 
 export default NewQuestionContainer;

@@ -1,5 +1,6 @@
 import React from 'react';
 import Quiz from '../components/';
+import PropTypes from 'prop-types';
 
 class QuizContainer extends React.Component {
 	constructor(props) {
@@ -26,7 +27,6 @@ class QuizContainer extends React.Component {
 		const { navigation } = this.props;
 		const { score, numAnswered, flipped } = this.state;
 		const cards = navigation.state.params ? navigation.state.params.cards : {};
-		console.log(cards);
 		return (
 			<Quiz
 				navigation={navigation}
@@ -40,5 +40,9 @@ class QuizContainer extends React.Component {
 		);
 	}
 }
+
+QuizContainer.propTypes = {
+	navigation: PropTypes.object.isRequired
+};
 
 export default QuizContainer;

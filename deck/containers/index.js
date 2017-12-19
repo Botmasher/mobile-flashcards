@@ -1,5 +1,6 @@
 import React from 'react';
 import Deck from '../components/';
+import PropTypes from 'prop-types';
 
 class DeckContainer extends React.Component {
 	render() {
@@ -15,5 +16,9 @@ class DeckContainer extends React.Component {
 		);
 	}
 }
+
+DeckContainer.propTypes = {
+	navigation: PropTypes.object.isRequired
+};
 
 export default DeckContainer;

@@ -1,6 +1,7 @@
 import React from 'react';
 import NewDeck from '../components/';
 import { _addDeck } from '../../utils/api';
+import PropTypes from 'prop-types';
 
 class NewDeckContainer extends React.Component {
 	constructor(props) {
@@ -21,5 +22,9 @@ class NewDeckContainer extends React.Component {
 		);
 	}
 }
+
+NewDeckContainer.propTypes = {
+	navigation: PropTypes.object
+};
 
 export default NewDeckContainer;
