@@ -10,8 +10,28 @@ async function _fetch (storageKey) {
   return data;
 }
 
+async function _set(storageKey, updatedData) {
+	await AsyncStorage.setItem(storageKey, JSON.stringify(updatedData));
+}
+
 async function _merge(storageKey, updatedData) {
 	await AsyncStorage.mergeItem(storageKey, JSON.stringify(updatedData));
+}
+
+async function _mergeCards(cards) {
+	await _merge(CARD_STORAGE_KEY, cards);
+}
+
+async function _setCards(cards) {
+	await _set(CARD_STORAGE_KEY, cards);
+}
+
+async function _mergeDecks(decks) {
+	await _merge(DECK_STORAGE_KEY, decks);
+}
+
+async function _setDecks(decks) {
+	await _set(DECK_STORAGE_KEY, decks);
 }
 
 export async function _fetchDecks () {
@@ -22,14 +42,6 @@ export async function _fetchDecks () {
 export async function _fetchCards() {
 	const cards = await _fetch(CARD_STORAGE_KEY);
 	return cards;
-}
-
-async function _mergeCards(cards) {
-	await _merge(CARD_STORAGE_KEY, cards);
-}
-
-async function _mergeDecks(decks) {
-	await _merge(DECK_STORAGE_KEY, decks);
 }
 
 export async function _addDeck(name) {
@@ -124,19 +136,23 @@ export async function _removeDeck(deckId) {
 	const updatedDecks = Object.keys(decks)
 		.filter(id => id !== deckId)
 		.reduce((filteredDecks, id) => ({...filteredDecks, [id]: decks[id]}), {});
-	await _mergeDecks(updatedDecks);
-	// also remove the deck from cards that have it
+	await _setDecks(updatedDecks);
+	// also remove the deck from cards and delete completely undecked cards
 	const cards = await _fetchCards();
 	const updatedCards = Object.keys(cards).reduce((deckedCards, cardId) => {
-		return {
-			...deckedCards,
-			[cardId]: {
-				...cards[cardId],
-				decks: cards[cardId].decks.filter(id => id !== deckId)
-			}
-		};
+		const filteredDeckIds = cards[cardId].decks.filter(id => id !== deckId);
+		return filteredDeckIds.length > 0
+			? {
+					...deckedCards,
+					[cardId]: {
+						...cards[cardId],
+						decks: filteredDeckIds
+					}
+				}
+			: { ...deckedCards }
+		;
 	}, {});
-	await _mergeCards(updatedCards);
+	await _setCards(updatedCards);
 	return {decks: updatedDecks, cards: updatedCards};
 }
 
@@ -145,6 +161,6 @@ export async function _removeCard(cardId) {
 	const updatedCards = Object.keys(cards)
 		.filter(id => id !== cardId)
 		.reduce((filteredCards, id) => ({...filteredCards, [id]: cards[id]}), {});
-	await _mergeCards(updatedCards);
+	await _setCards(updatedCards);
 	return updatedCards;
 }

@@ -29,6 +29,7 @@ class NewQuestionContainer extends React.Component {
 			: this.state.question
 	});
 	handleSubmit = () => {
+		console.log(this.props.navigation.state.params);
 		if (this.state.question && this.state.answer && !this.props.navigation.state.params.cardId) {
 			_addCard(this.props.navigation.state.params.deck.id, this.state.question, this.state.answer)
 				.then(() => {

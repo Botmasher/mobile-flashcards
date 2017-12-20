@@ -78,11 +78,9 @@
 - [X] options to modify decks
 	- [X] edit a deck in DeckList
 	- [X] delete a deck in DeckList
-- [ ] options to crud cards
+- [X] options to crud cards
 	- [X] edit a card in Deck
-	- [ ] delete a card in Deck
-- [ ] modify DeckList to show deck icon
-- [ ] modify Deck to show deck cards
+	- [X] delete a card in Deck
 - [ ] apply some rough styling
 	- [ ] clearly display buttons and text inputs
 	- [ ] display deck icon for each deck in DeckList
@@ -102,9 +100,11 @@
 	- [ ] edit/delete control for a deck
 	- [ ] edit/delete control for a card
 - [ ] refine the styling
+- [ ] notifications for reminders to study that day
 - [ ] add and update packages
 	- [ ] notifications and permissions
-- [ ] notifications for reminders to study that day
+	- [ ] reselect
+	- [X] prop-types (already included)
 - [ ] reread and adjust based on project requirements (beginning of planning above)
 - [ ] again, check the project rubric
 - [ ] update README and TODO based on changes made

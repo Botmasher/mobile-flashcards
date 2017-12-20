@@ -4,6 +4,7 @@ import { countCardsPerDeck, dealCardsIntoDecks } from '../../utils/helpers';
 import PropTypes from 'prop-types';
 
 const renderListItem = (deck, navigation, cardsPerDeck, openModal) => {
+	console.log(cardsPerDeck);
 	return (
 		<View key={deck.id}>
 			<TouchableOpacity
@@ -47,7 +48,7 @@ function DeckList({ decks, cards, navigation, modal, openModal, closeModal }) {
 			</TouchableOpacity>
 			<Text>Deck List View (default view)</Text>
 			<FlatList
-				data={decks}
+				data={Object.values(decks)}
 				renderItem={({item}) => renderListItem(item, navigation, cardsPerDeck, openModal)}
 				keyExtractor={(item, i) => i}
 			/>
