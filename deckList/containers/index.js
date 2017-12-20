@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Picker } from 'react-native';
 import DeckList from '../components/';
-import { _fetchDecks, _fetchCards } from '../../utils/api';
+import { _fetchDecks, _fetchCards, _removeDeck } from '../../utils/api';
 import { selectDecksSortedNum, selectDecksSortedAlpha } from '../selectors';
 import PropTypes from 'prop-types';
 
@@ -13,7 +13,9 @@ class DeckListContainer extends React.Component {
 			byAlpha: false,
 			ascending: true,
 		},
-		pickerValue: ''
+		pickerValue: '',
+		modal: false,
+		focusedDeckId: ''
 	};
 	componentDidMount() {
 		this.fetchDecks();
@@ -28,6 +30,7 @@ class DeckListContainer extends React.Component {
 	fetchCards = () => {
 		_fetchCards().then(data => this.setState({cards: data}));
 	};
+
 	handleSort = pickerValue => {
 		const [property, ascDesc] = pickerValue.split('-');
 		const sortState = {
@@ -40,8 +43,17 @@ class DeckListContainer extends React.Component {
 			: selectDecksSortedNum(sortState);
 		this.setState({decks, sort: { byAlpha: property==='name', ascending: ascDesc==='asc'}, pickerValue});
 	};
+	openModal = (deckId) => this.setState({modal: true, focusedDeckId: deckId});
+	closeModal = (removeDeck) => {
+		this.setState({modal: false});
+		if (removeDeck) {
+			_removeDeck(this.state.focusedDeckId).then(() => {
+				this.props.navigation.navigate('Home');
+			});
+		}
+	}
 	render() {
-		const { decks, cards, sort, pickerValue } = this.state;
+		const { decks, cards, sort, pickerValue, modal } = this.state;
 		const { navigation } = this.props;
 		return (
 			<View>
@@ -55,6 +67,9 @@ class DeckListContainer extends React.Component {
 					decks={decks}
 					cards={cards}
 					navigation={navigation}
+					modal={modal}
+					openModal={this.openModal}
+					closeModal={this.closeModal}
 				/>
 			</View>
 		);

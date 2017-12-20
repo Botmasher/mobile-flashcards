@@ -13,15 +13,17 @@ class NewDeckContainer extends React.Component {
 	}
 	handleInput = text => this.setState({text, edited: true});
 	handleSubmit = () => {
-		if (!this.props.navigation.state.params.deckId) {
+		if (!this.props.navigation.state.params) {
 			_addDeck(this.state.text.trim()).then(() => this.props.navigation.navigate('Home'));
+		} else if (!this.state.edited) {
+			this.props.navigation.navigate('Home');
 		} else {
 			_updateDeck(this.props.navigation.state.params.deckId, this.state.text.trim()).then(() => this.props.navigation.navigate('Home'));
 		}
 	}
 	render() {
 		const { navigation } = this.props;
-		const { text } = !this.state.edited && navigation.state.params.text ? navigation.state.params : this.state;
+		const { text } = !this.state.edited && navigation.state.params && navigation.state.params.deckId ? navigation.state.params : this.state;
 		return (
 			<NewDeck navigation={navigation} text={text} handleInput={this.handleInput} handleSubmit={this.handleSubmit} />
 		);
@@ -30,7 +32,8 @@ class NewDeckContainer extends React.Component {
 
 NewDeckContainer.propTypes = {
 	navigation: PropTypes.object.isRequired,
-	deckId: PropTypes.string
+	deckId: PropTypes.string,
+	navigation: PropTypes.object
 };
 
 export default NewDeckContainer;

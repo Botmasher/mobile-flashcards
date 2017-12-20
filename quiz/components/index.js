@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 function Quiz({ navigation, cards, score, flipped, numAnswered, updateScore, flipCard }) {
 	const cardCount = Object.keys(cards).length;
+	const card = cards[Object.keys(cards)[numAnswered]];
 	return (
 		<View style={styles.container}>
 			<Text>Quiz View</Text>
@@ -13,8 +14,8 @@ function Quiz({ navigation, cards, score, flipped, numAnswered, updateScore, fli
 				? <View>
 						<TouchableOpacity onPress={() => flipCard()}>
 							{!flipped
-								? <Text>Q: {cards[Object.keys(cards)[numAnswered]].question}</Text>
-								: <Text>A: {cards[Object.keys(cards)[numAnswered]].answer}</Text>
+								? <Text>Q: {card.question}</Text>
+								: <Text>A: {card.answer}</Text>
 							}
 						</TouchableOpacity>
 						<TouchableOpacity onPress={() => updateScore(true)}>

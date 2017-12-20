@@ -71,25 +71,26 @@
 	- [X] sorting (or use selectors to sort)
 - [X] introduce selectors
 - [X] scrolling through and loading long lists - FlatList
-- [ ] handle AsyncStorage API
+- [X] handle AsyncStorage API
 	- [X] break out imports + API keys + methods into utils/api.js
 	- [X] on deck delete keep cards but remove the deck from card association
-	- [ ] DRY those repeated getItem and mergeItem calls in api.js
-- [ ] options to modify decks
-	- [ ] edit a deck in Deck
-	- [ ] delete a deck in Deck
+	- [X] DRY those repeated getItem and mergeItem calls in api.js
+- [X] options to modify decks
+	- [X] edit a deck in DeckList
+	- [X] delete a deck in DeckList
 - [ ] options to crud cards
-	- [ ] delete a card in Deck?
-	- [ ] edit a card in Deck?
-	- [ ] delete a card in Quiz
-	- [ ] edit a card in Quiz
-- [ ] modify DeckList to show deck
-- [ ] modify Deck to show deck
+	- [X] edit a card in Deck
+	- [ ] delete a card in Deck
+- [ ] modify DeckList to show deck icon
+- [ ] modify Deck to show deck cards
 - [ ] apply some rough styling
 	- [ ] clearly display buttons and text inputs
+	- [ ] display deck icon for each deck in DeckList
+	- [ ] display deck icon for deck in Deck
 	- [ ] display a card for the Q and A
-	- [ ] make it so that card flips between Q and A
+	- [ ] make card flip between Q and A
 - [ ] break out subcomponents
+	- [ ] modal for delete in DeckList
 	- [ ] edit vs add in NewDeck
 	- [ ] sorting picker for DeckList
 	- [ ] deck icon/display/img
@@ -114,3 +115,9 @@
 - [ ] ability to add card to multiple decks
 - [ ] sorting options for decks and cards using existing selectors
 - [ ] naming/string collisions with currently existing decks and cards
+- [ ] more consistent UI for crud operations
+	- [ ] edit a deck in Deck
+	- [ ] delete a deck in Deck
+	- [ ] edit a card in Deck?
+	- [ ] delete a card in Deck?
+	

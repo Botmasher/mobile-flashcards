@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
-function NewQuestion({ question, answer, message, handleQuestion, handleAnswer, handleSubmit }) {
+function NewQuestion({ question, answer, message, handleQuestion, handleAnswer, handleSubmit, handleClose }) {
 	return (
 		<View style={styles.container}>
 			<Text>New Question View</Text>
@@ -11,6 +11,9 @@ function NewQuestion({ question, answer, message, handleQuestion, handleAnswer, 
 			{message!=='' && <Text>{message}</Text>}
 			<TouchableOpacity onPress={() => handleSubmit()}>
 				<Text>Submit</Text>
+			</TouchableOpacity>
+			<TouchableOpacity onPress={() => handleClose()}>
+				<Text>Close</Text>
 			</TouchableOpacity>
 		</View>
 	);
@@ -28,7 +31,8 @@ NewQuestion.propTypes = {
 	message: PropTypes.string,
 	handleQuestion: PropTypes.func.isRequired,
 	handleAnswer: PropTypes.func.isRequired,
-	handleSubmit: PropTypes.func.isRequired
+	handleSubmit: PropTypes.func.isRequired,
+	handleClose: PropTypes.func.isRequired
 };
 
 export default NewQuestion;
