@@ -55,6 +55,10 @@ class DeckListContainer extends React.Component {
 	render() {
 		const { decks, cards, sort, pickerValue, modal } = this.state;
 		const { navigation } = this.props;
+		console.log(`--- Hi here are your DECKS! --- `);
+		console.log(decks);
+		console.log(`--- Hi here are your CARDS! --- `);
+		console.log(cards);
 		return (
 			<View>
 				<Picker selectedValue={pickerValue} onValueChange={(value) => this.handleSort(value)}>

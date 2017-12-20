@@ -4,17 +4,17 @@ import PropTypes from 'prop-types';
 
 function renderCard(card, navigation, openModal) {
 	return (
-		<View>
+		<View key={card.id} style={{marginTop: 8}}>
 			<Text>{card.question}</Text>
 			<TouchableOpacity onPress={() => navigation.navigate('NewQuestion', {
 				cardId: card.id,
 				question: card.question,
 				answer: card.answer
 			})}>
-				<Text>edit card</Text>
+				<Text style={{fontSize: 10, color: 'blue'}}>edit card</Text>
 			</TouchableOpacity>
 			<TouchableOpacity onPress={() => openModal(card.id)}>
-				<Text>delete card</Text>
+				<Text style={{fontSize: 10, color: 'blue'}}>delete card</Text>
 			</TouchableOpacity>
 		</View>
 	);
@@ -28,12 +28,12 @@ function Deck({ deck, cards, navigation, modal, openModal, closeModal }) {
 			<Text>Deck "{deck.name}" contains {Object.keys(cards).length} cards.</Text>
 
 			<TouchableOpacity onPress={() => navigation.navigate('NewQuestion', {deck})}>
-				<Text>+ add card</Text>
+				<Text style={{color: 'blue'}}>+ add card</Text>
 			</TouchableOpacity>
 			
 			{Object.keys(cards).length > 0 && (
 				<TouchableOpacity onPress={() => navigation.navigate('Quiz', {title: deck.name, cards})}>
-					<Text>start quiz</Text>
+					<Text style={{color: 'purple', fontSize: 14, fontWeight: 'bold'}}>start quiz</Text>
 				</TouchableOpacity>
 			)}
 

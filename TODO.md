@@ -87,6 +87,7 @@
 	- [ ] display deck icon for deck in Deck
 	- [ ] display a card for the Q and A
 	- [ ] make card flip between Q and A
+- [ ] empty string deck names are accepted
 - [ ] break out subcomponents
 	- [ ] modal for delete in DeckList
 	- [ ] edit vs add in NewDeck
@@ -120,4 +121,8 @@
 	- [ ] delete a deck in Deck
 	- [ ] edit a card in Deck?
 	- [ ] delete a card in Deck?
+- [ ] decks can currently have the same name
+- [ ] cards in a deck can currently have the same question
+- [ ] when you add/delete a card, it redirects back to the deck selection screen
+- [ ] it would be nice if questions could be quizzed in random order
 	

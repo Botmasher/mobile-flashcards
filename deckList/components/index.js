@@ -4,9 +4,8 @@ import { countCardsPerDeck, dealCardsIntoDecks } from '../../utils/helpers';
 import PropTypes from 'prop-types';
 
 const renderListItem = (deck, navigation, cardsPerDeck, openModal) => {
-	console.log(cardsPerDeck);
 	return (
-		<View key={deck.id}>
+		<View key={deck.id} style={{marginTop: 10}}>
 			<TouchableOpacity
 				onPress={() => (navigation.navigate('Deck', 
 					{
@@ -14,15 +13,14 @@ const renderListItem = (deck, navigation, cardsPerDeck, openModal) => {
 						cards: cardsPerDeck[deck.id] ? cardsPerDeck[deck.id] : {}
 					}
 			))}>
-				<Text key={deck.id}>
-					Deck {deck.name} has {cardsPerDeck[deck.id] ? Object.keys(cardsPerDeck[deck.id]).length : 0} cards
-				</Text>
+				<Text>Deck: "{deck.name}"</Text>
+				<Text style={{fontSize: 14, color: 'gray'}}>{cardsPerDeck[deck.id] ? Object.keys(cardsPerDeck[deck.id]).length : 0} cards</Text>
 			</TouchableOpacity>
 			<TouchableOpacity onPress={() => navigation.navigate('NewDeck', {text: deck.name, deckId: deck.id})}>
-			 <Text>+ edit this deck</Text>
+			 <Text style={{fontSize: 12, color: 'blue'}}>+ edit this deck</Text>
 			</TouchableOpacity>
 			<TouchableOpacity onPress={() => openModal(deck.id)}>
-			 <Text>+ delete this deck</Text>
+			 <Text style={{fontSize: 12, color: 'blue'}}>+ delete this deck</Text>
 			</TouchableOpacity>
 		</View>
 	);
