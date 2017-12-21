@@ -83,8 +83,10 @@
 	- [X] delete a card in Deck
 - [ ] apply some rough styling
 	- [ ] clearly display buttons and text inputs
-	- [ ] display deck icon for each deck in DeckList
-	- [ ] display deck icon for deck in Deck
+	- [X] create app header
+	- [ ] apply and customize app header for each core component
+	- [X] display icon and name card for each deck in DeckList
+	- [ ] display icon for deck in Deck
 	- [ ] various styles for each view
 	- [ ] display a card for the Q and A
 	- [ ] make card flip between Q and A
