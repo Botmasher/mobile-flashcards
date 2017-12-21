@@ -85,6 +85,7 @@
 	- [ ] clearly display buttons and text inputs
 	- [ ] display deck icon for each deck in DeckList
 	- [ ] display deck icon for deck in Deck
+	- [ ] various styles for each view
 	- [ ] display a card for the Q and A
 	- [ ] make card flip between Q and A
 - [ ] empty string deck names are accepted

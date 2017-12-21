@@ -1,6 +1,5 @@
 import React from 'react';
 import { StackNavigator } from 'react-navigation';
-import { StyleSheet, Text, View } from 'react-native';
 import ComponentsTestContainer from './componentsTest/containers/';
 import DeckListContainer from './deckList/containers';
 import DeckContainer from './deck/containers';
@@ -34,15 +33,6 @@ const ScreenNavigator = StackNavigator({
   NewQuestion: {
     screen: props => <NewQuestionContainer {...props} />
   }
-});
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
 });
 
 export default ScreenNavigator;

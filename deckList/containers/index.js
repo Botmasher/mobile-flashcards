@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Picker } from 'react-native';
 import DeckList from '../components/';
+import Header from '../../header/components/';
 import { _fetchDecks, _fetchCards, _removeDeck } from '../../utils/api';
 import { selectDecksSortedNum, selectDecksSortedAlpha } from '../selectors';
 import PropTypes from 'prop-types';
@@ -55,12 +56,9 @@ class DeckListContainer extends React.Component {
 	render() {
 		const { decks, cards, sort, pickerValue, modal } = this.state;
 		const { navigation } = this.props;
-		console.log(`--- Hi here are your DECKS! --- `);
-		console.log(decks);
-		console.log(`--- Hi here are your CARDS! --- `);
-		console.log(cards);
 		return (
-			<View>
+			<View style={{flex: 1}}>
+				<Header />
 				<Picker selectedValue={pickerValue} onValueChange={(value) => this.handleSort(value)}>
 					<Picker.Item label="newest" value="timestamp-desc" />
 					<Picker.Item label="oldest" value="timestamp-asc" />

@@ -8,13 +8,16 @@ class NewDeckContainer extends React.Component {
 		super(props);
 		this.state = {
 			text: '',
-			edited: false
+			edited: false,
+			message: ''
 		};
 	}
 	handleInput = text => this.setState({text, edited: true});
 	handleSubmit = () => {
-		if (!this.props.navigation.state.params) {
+		if (!this.props.navigation.state.params && this.state.edited) {
 			_addDeck(this.state.text.trim()).then(() => this.props.navigation.navigate('Home'));
+		} else if (!this.state.text) {
+			this.setState({message: 'Please fill out a title for your deck!'});
 		} else if (!this.state.edited) {
 			this.props.navigation.navigate('Home');
 		} else {
@@ -25,7 +28,13 @@ class NewDeckContainer extends React.Component {
 		const { navigation } = this.props;
 		const { text } = !this.state.edited && navigation.state.params && navigation.state.params.deckId ? navigation.state.params : this.state;
 		return (
-			<NewDeck navigation={navigation} text={text} handleInput={this.handleInput} handleSubmit={this.handleSubmit} />
+			<NewDeck
+				navigation={navigation}
+				text={text}
+				message={this.state.message}
+				handleInput={this.handleInput}
+				handleSubmit={this.handleSubmit}
+			/>
 		);
 	}
 }
