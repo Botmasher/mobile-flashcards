@@ -80,32 +80,24 @@ function DeckList({ decks, cards, navigation, modal, openModal, closeModal }) {
 					</TouchableOpacity>
 				</View>
 			</Modal>
-			<View style={[styles.row, {paddingBottom: 10}]}>
-				<Text style={styles.screenHeader}>Your Decks</Text>
-				<TouchableOpacity onPress={() => navigation.navigate('NewDeck')}>
-					<Entypo name="add-to-list" size={size.icon.small} color="gray" style={{marginLeft: 20}} />
-				</TouchableOpacity>
+			<View style={styles.row}>
+				<FlatList
+					data={Object.values(decks)}
+					renderItem={({item}) => renderListItem(item, navigation, cardsPerDeck, openModal)}
+					keyExtractor={(item, i) => i}
+					ItemSeparatorComponent={renderSeparator}
+					style={{flex: 1}}
+				/>
 			</View>
-			<FlatList
-				data={Object.values(decks)}
-				renderItem={({item}) => renderListItem(item, navigation, cardsPerDeck, openModal)}
-				keyExtractor={(item, i) => i}
-				ItemSeparatorComponent={renderSeparator}
-				style={{flex: 1}}
-			/>
 		</View>
 	);
 }
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
+		flex: 7,
 		justifyContent: 'center',
 		alignItems: 'center'
-	},
-	screenHeader: {
-		fontSize: size.huge,
-		fontWeight: 'bold'
 	},
 	deckHeader: {
 		fontSize: size.large,

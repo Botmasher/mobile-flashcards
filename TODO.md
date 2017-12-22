@@ -64,7 +64,7 @@
 - [X] update README and TODO as changes made during planning
 
 ## Build out
-- [ ] read through the project rubric again
+- [X] read through the project rubric again
 - [X] add prop types
 - [X] break out prelim helper methods
 	- [X] card counter
@@ -87,11 +87,14 @@
 	- [ ] apply and customize app header for each core component
 	- [X] display icon and name card for each deck in DeckList
 	- [ ] display icon for deck in Deck
-	- [ ] various styles for each view
+	- [ ] styles for each view
 	- [ ] display a card for the Q and A
 	- [ ] make card flip between Q and A
-- [ ] empty string deck names are accepted
+- [X] empty string deck names are not accepted
+- [ ] When the score is displayed, buttons are displayed to either start the quiz over or go back to the Individual Deck view.
+- [ ] NewDeck submit creates the deck and routes the user to the Individual Deck view for the new deck.
 - [ ] break out subcomponents
+	- [X] header for app + screen titles
 	- [ ] modal for delete in DeckList
 	- [ ] edit vs add in NewDeck
 	- [ ] sorting picker for DeckList
@@ -105,6 +108,8 @@
 	- [ ] edit/delete control for a card
 - [ ] refine the styling
 - [ ] notifications for reminders to study that day
+	- [ ] Logic for push notification has been implemented.
+	- [ ] Push notifications are generated at a specific time if the user hasn't completed at least one quiz for that day.
 - [ ] add and update packages
 	- [ ] notifications and permissions
 	- [ ] reselect

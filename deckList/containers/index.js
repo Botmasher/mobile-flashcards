@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Picker } from 'react-native';
+import { View, Text, Picker } from 'react-native';
 import DeckList from '../components/';
 import Header from '../../header/components/';
 import { _fetchDecks, _fetchCards, _removeDeck } from '../../utils/api';
 import { selectDecksSortedNum, selectDecksSortedAlpha } from '../selectors';
 import PropTypes from 'prop-types';
+import { size } from '../../utils/font';
 
 class DeckListContainer extends React.Component {
 	state = {
@@ -58,13 +59,24 @@ class DeckListContainer extends React.Component {
 		const { navigation } = this.props;
 		return (
 			<View style={{flex: 1}}>
-				<Header />
-				<Picker selectedValue={pickerValue} onValueChange={(value) => this.handleSort(value)}>
-					<Picker.Item label="newest" value="timestamp-desc" />
-					<Picker.Item label="oldest" value="timestamp-asc" />
-					<Picker.Item label="title A-Z" value="name-asc" />
-					<Picker.Item label="title Z-A" value="name-desc" />
-				</Picker>
+				<Header subtitle={`Your Decks`} navigation={navigation} />
+				{Object.keys(decks).length > 2 && (
+					<View style={{flex:2, flexDirection: 'row', justifyContent: 'flex-end', marginTop: -18, marginBottom: -92}}>
+						<Text style={{marginTop: 13}}>sort by: </Text>
+						<Picker
+							selectedValue={pickerValue}
+							onValueChange={(value) => this.handleSort(value)}
+							style={{height: 50}}
+							textStyle={{fontSize: size.small}}
+							itemStyle={{height: 40, width: 100}}
+						>
+							<Picker.Item label="newest" value="timestamp-desc"  />
+							<Picker.Item label="oldest" value="timestamp-asc" />
+							<Picker.Item label="title A-Z" value="name-asc" />
+							<Picker.Item label="title Z-A" value="name-desc" />
+						</Picker>
+					</View>
+				)}
 				<DeckList
 					decks={decks}
 					cards={cards}
