@@ -7,28 +7,28 @@ import { size } from '../../utils/font';
 function NewQuestion({ question, answer, message, handleQuestion, handleAnswer, handleSubmit, handleClose }) {
 	return (
 		<View style={styles.container}>
-			<Text style={{fontSize: size.med, textAlign: 'center'}}>Question:</Text>
+			<Text style={styles.label}>Question:</Text>
 			<TextInput
 				multiline={true}
 				onChangeText={(text) => handleQuestion(text)}
 				value={question}
 				editable={true}
-				style={{margin: 10, padding: 6, backgroundColor: colors.white, borderRadius: 4, fontSize: size.med}}
+				style={styles.input}
 			/>
-			<Text style={{fontSize: size.med, textAlign: 'center'}}>Answer</Text>
+			<Text style={styles.label}>Answer:</Text>
 			<TextInput
 				multiline={true}
 				onChangeText={(text) => handleAnswer(text)}
 				value={answer}
 				editable={true}
-				style={{margin: 10, padding: 6, backgroundColor: colors.white, borderRadius: 4, fontSize: size.med}}
+				style={styles.input}
 			/>
 			{message!=='' && <Text>{message}</Text>}
 			<TouchableOpacity onPress={() => handleSubmit()}>
-				<Text style={{textAlign: 'center', marginBottom: 10, color: colors.secondary.dark, fontSize: size.large}}>Submit</Text>
+				<Text style={styles.button}>Submit</Text>
 			</TouchableOpacity>
 			<TouchableOpacity onPress={() => handleClose()}>
-				<Text style={{textAlign: 'center', marginBottom: 10, color: colors.secondary.dark, fontSize: size.large}}>Close</Text>
+				<Text style={styles.button}>Close</Text>
 			</TouchableOpacity>
 		</View>
 	);
@@ -37,6 +37,23 @@ function NewQuestion({ question, answer, message, handleQuestion, handleAnswer, 
 const styles = StyleSheet.create({
 	container: {
 		flex: 8
+	},
+	button: {
+		textAlign: 'center',
+		marginBottom: 10,
+		color: colors.secondary.dark,
+		fontSize: size.large
+	},
+	input: {
+		margin: 10,
+		padding: 6,
+		backgroundColor: colors.white,
+		borderRadius: 4,
+		fontSize: size.med
+	},
+	label: {
+		fontSize: size.med,
+		textAlign: 'center'
 	}
 });
 

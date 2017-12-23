@@ -95,29 +95,24 @@
 	- [X] When the score is displayed, buttons are displayed to either start the quiz over or go back to the Individual Deck view.
 	- [X] NewDeck submit creates the deck and routes the user to the Individual Deck view for the new deck.
 	- [X] return to Deck view after adding (+cancel), editing (+cancel) or deleting a Card
-- [ ] break out subcomponents
+- [X] break out subcomponents
 	- [X] header for app + screen titles
 	- [X] modal for delete deck in DeckList
-	- [ ] modal for delete card in Deck
-	- [ ] edit vs add in NewDeck
-	- [ ] sorting picker for DeckList
-	- [ ] deck icon/display/img
-	- [ ] flippable card
-	- [ ] quiz results scoring
-	- [ ] individual deck item within DeckList
-	- [ ] deck title and stats for Deck and Quiz and maybe NewQuestion
-	- [ ] add a deck
-	- [ ] add a card
-	- [ ] edit/delete control for a deck
-	- [ ] edit/delete control for a card
-- [ ] refine the styling
-	- [ ] move inline into created StyleSheets in each breakout component
+	- [X] modal for delete card in Deck
+	- [X] sorting picker for DeckList
+	- [X] flippable card in Quiz
+	- [X] quiz results scoring
+	- [X] individual deck item within DeckList
+	- [X] individual card item within Deck
+- [X] refine the styling
+	- [X] move inline into created StyleSheets in each breakout component
+- [ ] update PropTypes for breakout components
 - [ ] notifications for reminders to study that day
 	- [ ] Logic for push notification has been implemented.
 	- [ ] Push notifications are generated at a specific time if the user hasn't completed at least one quiz for that day.
-- [ ] add and update packages
-	- [ ] notifications and permissions
-	- [ ] reselect
+- [X] add and update packages
+	- [X] notifications and permissions
+	- [X] reselect
 	- [X] prop-types (already included)
 - [ ] reread and adjust based on project requirements (beginning of planning above)
 - [ ] again, check the project rubric

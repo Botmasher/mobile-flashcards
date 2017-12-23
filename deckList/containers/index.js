@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, Picker, TouchableOpacity, Platform } from 'react-native';
+import { View, Text, TouchableOpacity, Platform } from 'react-native';
 import DeckList from '../components/';
 import Header from '../../header/components/';
+import SortPicker from '../components/SortPicker'
 import { _fetchDecks, _fetchCards, _removeDeck } from '../../utils/api';
 import { selectDecksSortedNum, selectDecksSortedAlpha } from '../selectors';
 import PropTypes from 'prop-types';
@@ -64,20 +65,7 @@ class DeckListContainer extends React.Component {
 				<Header subtitle={`My Decks`} showTitle={true} navigation={navigation} />
 				<View style={{flex:2, flexDirection: 'row', justifyContent: 'flex-end', marginTop: -18, marginBottom: -92}}>
 					{Object.keys(decks).length > 2 && (
-						<View style={{flexDirection: 'row'}}>
-							<Text style={{marginTop: 13}}>sort by: </Text>
-							<Picker
-								selectedValue={pickerValue}
-								onValueChange={(value) => this.handleSort(value)}
-								style={{height: 50, marginLeft: -14}}
-								itemStyle={{height: 40, width: 100}}
-							>
-								<Picker.Item label="newest" value="timestamp-desc"  />
-								<Picker.Item label="oldest" value="timestamp-asc" />
-								<Picker.Item label="A to Z" value="name-asc" />
-								<Picker.Item label="Z to A" value="name-desc" />
-							</Picker>
-						</View>
+						<SortPicker pickerValue={pickerValue} handleSort={this.handleSort} />
 					)}
 					<TouchableOpacity onPress={() => navigation.navigate('NewDeck')}>
 						{Platform.OS === 'ios'
