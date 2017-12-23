@@ -2,8 +2,9 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 import NewDeck from '../components/';
 import Header from '../../header/components';
-import { _addDeck, _updateDeck, _removeDeck } from '../../utils/api';
 import PropTypes from 'prop-types';
+import { _addDeck, _updateDeck, _removeDeck } from '../../utils/api';
+import { clearLocalNotification, setLocalNotification } from '../../utils/helpers';
 
 class NewDeckContainer extends React.Component {
 	constructor(props) {
@@ -17,13 +18,17 @@ class NewDeckContainer extends React.Component {
 	handleInput = text => this.setState({text, edited: true});
 	handleSubmit = () => {
 		if (!this.props.navigation.state.params && this.state.edited) {
-			_addDeck(this.state.text.trim()).then(() => this.props.navigation.navigate('Home'));
+			_addDeck(this.state.text.trim())
+				.then(() => this.props.navigation.navigate('Home'))
+				.then(() => clearLocalNotification().then(setLocalNotification));
 		} else if (!this.state.text) {
 			this.setState({message: 'Please fill out a title for your deck!'});
 		} else if (!this.state.edited) {
 			this.props.navigation.navigate('Home');
 		} else {
-			_updateDeck(this.props.navigation.state.params.deckId, this.state.text.trim()).then(() => this.props.navigation.navigate('Home'));
+			_updateDeck(this.props.navigation.state.params.deckId, this.state.text.trim())
+				.then(() => this.props.navigation.navigate('Home'))
+				.then(() => clearLocalNotification().then(setLocalNotification));
 		}
 	}
 	render() {
@@ -31,7 +36,7 @@ class NewDeckContainer extends React.Component {
 		const { text } = !this.state.edited && navigation.state.params && navigation.state.params.deckId ? navigation.state.params : this.state;
 		return (
 			<ScrollView style={{flex: 1}}>
-				<Header subtitle={`Add a new deck`} navigation={navigation} showTitle={true} />
+				<Header subtitle={navigation.state.params ? `Edit deck` : `Add a deck`} navigation={navigation} showTitle={true} />
 				<NewDeck
 					navigation={navigation}
 					text={text}
@@ -45,9 +50,7 @@ class NewDeckContainer extends React.Component {
 }
 
 NewDeckContainer.propTypes = {
-	navigation: PropTypes.object.isRequired,
-	deckId: PropTypes.string,
-	navigation: PropTypes.object
+	navigation: PropTypes.object.isRequired
 };
 
 export default NewDeckContainer;

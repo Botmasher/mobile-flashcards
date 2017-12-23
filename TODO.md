@@ -106,10 +106,12 @@
 	- [X] individual card item within Deck
 - [X] refine the styling
 	- [X] move inline into created StyleSheets in each breakout component
-- [ ] update PropTypes for breakout components
-- [ ] notifications for reminders to study that day
+- [X] update PropTypes for breakout components
+- [X] Deck view cards list lists ALL cards when return back after editing or deleting one card
+- [X] notifications for reminders to study that day
 	- [ ] Logic for push notification has been implemented.
 	- [ ] Push notifications are generated at a specific time if the user hasn't completed at least one quiz for that day.
+	- [X] but on the Slack forum it's mentioned only local notifications needed
 - [X] add and update packages
 	- [X] notifications and permissions
 	- [X] reselect
@@ -117,9 +119,8 @@
 - [ ] reread and adjust based on project requirements (beginning of planning above)
 - [ ] again, check the project rubric
 - [ ] update README and TODO based on changes made
-
 - [ ] Emulation and project submission: working on iOS vs Android
-David Harris Sep 26th at 1:15 PM: "I've made a change to the rubric for the project, due to the difficulty of finding reasonable emulation for iOS devices on non-Apple machines. Your code needs to work on either Android _or_ iOS. Please specify which platform you've tested in your README and the notes to your reviewer."
+	- posted to Slack forum Sep 26th at 1:15 PM: "Your code needs to work on either Android _or_ iOS. Please specify which platform you've tested in your README and the notes to your reviewer."
 
 ## Test
 
@@ -136,6 +137,7 @@ David Harris Sep 26th at 1:15 PM: "I've made a change to the rubric for the proj
 	- [ ] subtitles passed to Header
 	- [ ] questions on cards in Quiz
 	- [ ] also adjust Quiz card text size based on question/answer length
+- [ ] server push notifications
 - [ ] more consistent UI for crud operations
 	- [ ] edit a deck in Deck
 	- [ ] delete a deck in Deck

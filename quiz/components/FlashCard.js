@@ -2,6 +2,7 @@ import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, Animated } from 'react-native';
 import AnimCard from './AnimCard';
 import AnimCardText from './AnimCardText';
+import PropTypes from 'prop-types';
 import { colors } from '../../utils/colors';
 import { size } from '../../utils/font';
 
@@ -68,5 +69,13 @@ const styles = StyleSheet.create({
 		color: colors.secondary.dark
 	}
 });
+
+FlashCard.propTypes = {
+	flipped: PropTypes.bool.isRequired,
+	question: PropTypes.string.isRequired,
+	answer: PropTypes.string.isRequired,
+	flipCard: PropTypes.func.isRequired,
+	updateScore: PropTypes.func.isRequired
+};
 
 export default FlashCard;

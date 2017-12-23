@@ -16,7 +16,7 @@ function DeckList({ decks, cards, navigation, modal, openModal, closeModal }) {
 			<View style={styles.row}>
 				<FlatList
 					data={Object.values(decks)}
-					renderItem={({item}) => DeckItem(item, navigation, cardsPerDeck, openModal)}
+					renderItem={({item}) => <DeckItem deck={item} navigation={navigation} cardsPerDeck={cardsPerDeck} openModal={openModal} />}
 					keyExtractor={(item, i) => i}
 					ItemSeparatorComponent={Separator}
 					style={{flex: 1}}
@@ -42,7 +42,9 @@ DeckList.propTypes = {
 	decks: PropTypes.array.isRequired,
 	cards: PropTypes.object.isRequired,
 	navigation: PropTypes.object.isRequired,
-	modal: PropTypes.bool.isRequired
+	modal: PropTypes.bool.isRequired,
+	openModal: PropTypes.func.isRequired,
+	closeModal: PropTypes.func.isRequired
 };
 
 export default DeckList;

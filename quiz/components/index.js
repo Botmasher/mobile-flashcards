@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
 
 Quiz.propTypes = {
 	navigation: PropTypes.object.isRequired,
+	deck: PropTypes.object.isRequired,
 	cards: PropTypes.object.isRequired,
 	score: PropTypes.number.isRequired,
 	flipped: PropTypes.bool.isRequired,

@@ -33,10 +33,11 @@ const styles = StyleSheet.create({
 });
 
 NewDeck.propTypes = {
-	navigation: PropTypes.object,
+	navigation: PropTypes.object.isRequired,
 	text: PropTypes.string,
-	handleInput: PropTypes.func,
-	handleSubmit: PropTypes.func
+	handleInput: PropTypes.func.isRequired,
+	handleSubmit: PropTypes.func.isRequired,
+	message: PropTypes.string
 };
 
 export default NewDeck;

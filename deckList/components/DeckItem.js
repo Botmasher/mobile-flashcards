@@ -4,7 +4,7 @@ import { Foundation, MaterialCommunityIcons, Ionicons, Entypo } from '@expo/vect
 import { colors } from '../../utils/colors';
 import { size } from '../../utils/font';
 
-const DeckItem = (deck, navigation, cardsPerDeck, openModal) => {
+const DeckItem = ({ deck, navigation, cardsPerDeck, openModal }) => {
 	return (
 		<View key={deck.id} style={styles.listItem}>
 			<View style={styles.listCardIcon}>

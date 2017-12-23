@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import PropTypes from 'prop-types';
 import { colors } from '../../utils/colors';
 import { size } from '../../utils/font';
 
@@ -45,5 +46,11 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 	}
 });
+
+Header.propTypes = {
+	navigation: PropTypes.object.isRequired,
+	subtitle: PropTypes.string,
+	showTitle: PropTypes.bool
+};
 
 export default Header;

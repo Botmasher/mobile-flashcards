@@ -2,8 +2,9 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 import NewQuestion from '../components';
 import Header from '../../header/components';
-import { _addCard, _updateCard } from '../../utils/api';
 import PropTypes from 'prop-types';
+import { _addCard, _updateCard } from '../../utils/api';
+import { clearLocalNotification, setLocalNotification } from '../../utils/helpers';
 
 class NewQuestionContainer extends React.Component {
 	constructor(props) {
@@ -38,7 +39,8 @@ class NewQuestionContainer extends React.Component {
 				.then((updatedCards) => {
 					this.setState({message: ''});
 					this.props.navigation.navigate('Deck', {deck, cards: updatedCards});
-				});
+				})
+				.then(() => clearLocalNotification().then(setLocalNotification));
 		} else if (!this.state.question || !this.state.answer) {
 			this.setState({message: 'Please fill out a Question and Answer!'});
 		} else {
@@ -46,7 +48,8 @@ class NewQuestionContainer extends React.Component {
 				.then((updatedCards) => {
 					this.setState({message: ''});
 					this.props.navigation.navigate('Deck', {deck, cards: updatedCards});
-				});
+				})
+				.then(() => clearLocalNotification().then(setLocalNotification));
 		}
 	};
 	handleClose = () => {
@@ -79,7 +82,7 @@ class NewQuestionContainer extends React.Component {
 }
 
 NewQuestionContainer.propTypes = {
-	navigation: PropTypes.object
+	navigation: PropTypes.object.isRequired
 };
 
 export default NewQuestionContainer;

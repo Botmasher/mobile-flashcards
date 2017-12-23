@@ -6,28 +6,28 @@ import ModalRemove from './ModalRemove';
 import { colors } from '../../utils/colors';
 import { size } from '../../utils/font';
 
-function Deck({ deck, cards, navigation, modal, openModal, closeModal }) {
+function Deck({ deck, allCards, cardsInDeck, navigation, modal, openModal, closeModal }) {
 	return (
 		<View style={styles.container}>
 
 			<ModalRemove visible={modal} close={closeModal} />
 
-			<Text style={styles.centerText}>This deck contains {Object.keys(cards).length} cards</Text>
+			<Text style={styles.centerText}>This deck contains {Object.keys(allCards).length} cards</Text>
 
-			<TouchableOpacity onPress={() => navigation.navigate('NewQuestion', {deck, cards})}>
+			<TouchableOpacity onPress={() => navigation.navigate('NewQuestion', {deck, cards: allCards})}>
 				<Text style={styles.buttonBold}>+ add card</Text>
 			</TouchableOpacity>
 
-			{Object.keys(cards).length > 0 && (
-				<TouchableOpacity onPress={() => navigation.navigate('Quiz', {deck, cards})}>
+			{Object.keys(allCards).length > 0 && (
+				<TouchableOpacity onPress={() => navigation.navigate('Quiz', {deck, cards: allCards})}>
 					<Text style={styles.button}>start quiz</Text>
 				</TouchableOpacity>
 			)}
 
 			<View style={{flex: 1}}>
 				<FlatList
-					data={Object.values(cards)}
-					renderItem={({item}) => CardItem(item, deck, cards, navigation, openModal)}
+					data={cardsInDeck ? Object.values(cardsInDeck) : []}
+					renderItem={({item}) => <CardItem card={item} deck={deck} cards={allCards} navigation={navigation} openModal={openModal} />}
 					keyExtractor={(item, i) => i}
 					style={{flex: 1}}
 				/>
@@ -62,8 +62,12 @@ const styles = StyleSheet.create({
 
 Deck.propTypes = {
 	deck: PropTypes.object.isRequired,
-	cards: PropTypes.object.isRequired,
-	navigation: PropTypes.object.isRequired
+	allCards: PropTypes.object,
+	cardsInDeck: PropTypes.object,
+	navigation: PropTypes.object.isRequired,
+	modal: PropTypes.bool.isRequired,
+	openModal: PropTypes.func.isRequired,
+	closeModal: PropTypes.func.isRequired
 };
 
 export default Deck;

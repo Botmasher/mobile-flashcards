@@ -20,4 +20,9 @@ function ModalDelete({ visible, close }) {
 	);
 }
 
+ModalDelete.propTypes = {
+	visible: PropTypes.bool.isRequired,
+	close: PropTypes.func.isRequired
+};
+
 export default ModalDelete;

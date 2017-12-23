@@ -1,10 +1,11 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
+import PropTypes from 'prop-types';
 import { FontAwesome, MaterialCommunityIcons, Foundation, Ionicons } from '@expo/vector-icons';
 import { colors } from '../../utils/colors';
 import { size } from '../../utils/font';
 
-function CardItem(card, deck, cards, navigation, openModal) {
+function CardItem({ card, deck, cards, navigation, openModal }) {
 	return (
 		<View key={card.id} style={styles.container}>
 			<TouchableOpacity onPress={() => navigation.navigate('NewQuestion', {
@@ -63,5 +64,13 @@ const styles = StyleSheet.create({
 		paddingRight: 16
 	}
 });
+
+CardItem.propTypes = {
+	navigation: PropTypes.object.isRequired,
+	card: PropTypes.object.isRequired,
+	deck: PropTypes.object.isRequired,
+	cards: PropTypes.object.isRequired,
+	openModal: PropTypes.func.isRequired
+};
 
 export default CardItem;

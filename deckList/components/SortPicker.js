@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Picker } from 'react-native';
+import PropTypes from 'prop-types';
 
 function SortPicker({ pickerValue, handleSort }) {
 	return (
@@ -19,5 +20,10 @@ function SortPicker({ pickerValue, handleSort }) {
 		</View>
 	);
 }
+
+SortPicker.propTypes = {
+	pickerValue: PropTypes.string,
+	handleSort: PropTypes.func.isRequired
+};
 
 export default SortPicker;

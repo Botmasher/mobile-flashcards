@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 import { colors } from '../../utils/colors';
 import { size } from '../../utils/font';
 
@@ -34,5 +35,13 @@ const styles = StyleSheet.create({
 		marginBottom: 25
 	}
 });
+
+Results.propTypes = {
+	navigation: PropTypes.object.isRequired,
+	deck: PropTypes.object.isRequired,
+	cards: PropTypes.object.isRequired,
+	score: PropTypes.number,
+	cardCount: PropTypes.number
+};
 
 export default Results;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 import { size } from '../../utils/font';
 
 function ModalRemove({ visible, close }) {
@@ -33,5 +34,10 @@ const styles = StyleSheet.create({
 		fontSize: size.huge
 	}
 });
+
+ModalRemove.propTypes = {
+	visible: PropTypes.bool.isRequired,
+	close: PropTypes.func.isRequired
+};
 
 export default ModalRemove;

@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import Deck from '../components/';
 import Header from '../../header/components';
 import { _removeCard } from '../../utils/api';
+import { dealCardsIntoDecks } from '../../utils/helpers';
 import PropTypes from 'prop-types';
 
 class DeckContainer extends React.Component {
@@ -30,12 +31,14 @@ class DeckContainer extends React.Component {
 	render() {
 		const { navigation } = this.props;
 		const { deck, cards } = navigation.state.params;
+		const cardsPerDeck = dealCardsIntoDecks(cards);
 		return (
 			<View style={{flex: 1, flexDirection: 'column'}}>
 				<Header navigation={navigation} showTitle={true} subtitle={`${deck.name}`} />
 				<Deck
 					deck={deck}
-					cards={cards}
+					allCards={cards}
+					cardsInDeck={cardsPerDeck[deck.id]}
 					navigation={navigation}
 					openModal={this.openModal}
 					closeModal={this.closeModal}

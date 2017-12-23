@@ -6,10 +6,20 @@ import DeckContainer from './deck/containers';
 import QuizContainer from './quiz/containers';
 import NewDeckContainer from './newDeck/containers';
 import NewQuestionContainer from './newQuestion/containers';
+import { setLocalNotification } from './utils/helpers';
 
-const App = ({ navigation }) => (
-  <DeckListContainer navigation={navigation} />
-);
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  componentDidMount() {
+    setLocalNotification();
+  }
+  render () {
+    const { navigation } = this.props;
+    return <DeckListContainer navigation={navigation} />;
+  }
+}
 
 const ScreenNavigator = StackNavigator({
   Home: {
