@@ -1,5 +1,7 @@
 import React from 'react';
+import { ScrollView } from 'react-native';
 import NewDeck from '../components/';
+import Header from '../../header/components';
 import { _addDeck, _updateDeck, _removeDeck } from '../../utils/api';
 import PropTypes from 'prop-types';
 
@@ -28,13 +30,16 @@ class NewDeckContainer extends React.Component {
 		const { navigation } = this.props;
 		const { text } = !this.state.edited && navigation.state.params && navigation.state.params.deckId ? navigation.state.params : this.state;
 		return (
-			<NewDeck
-				navigation={navigation}
-				text={text}
-				message={this.state.message}
-				handleInput={this.handleInput}
-				handleSubmit={this.handleSubmit}
-			/>
+			<ScrollView style={{flex: 1}}>
+				<Header subtitle={`Add a new deck`} navigation={navigation} showTitle={true} />
+				<NewDeck
+					navigation={navigation}
+					text={text}
+					message={this.state.message}
+					handleInput={this.handleInput}
+					handleSubmit={this.handleSubmit}
+				/>
+			</ScrollView>
 		);
 	}
 }

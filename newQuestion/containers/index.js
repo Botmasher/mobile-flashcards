@@ -1,5 +1,7 @@
 import React from 'react';
+import { ScrollView } from 'react-native';
 import NewQuestion from '../components';
+import Header from '../../header/components';
 import { _addCard, _updateCard } from '../../utils/api';
 import PropTypes from 'prop-types';
 
@@ -29,25 +31,28 @@ class NewQuestionContainer extends React.Component {
 			: this.state.question
 	});
 	handleSubmit = () => {
-		console.log(this.props.navigation.state.params);
+		const deck = this.props.navigation.state.params.deck ? this.props.navigation.state.params.deck : {};
+		const cards = this.props.navigation.state.params.cards ? this.props.navigation.state.params.cards : {};
 		if (this.state.question && this.state.answer && !this.props.navigation.state.params.cardId) {
 			_addCard(this.props.navigation.state.params.deck.id, this.state.question, this.state.answer)
-				.then(() => {
+				.then((updatedCards) => {
 					this.setState({message: ''});
-					this.props.navigation.navigate('Home');
+					this.props.navigation.navigate('Deck', {deck, cards: updatedCards});
 				});
 		} else if (!this.state.question || !this.state.answer) {
 			this.setState({message: 'Please fill out a Question and Answer!'});
 		} else {
 			_updateCard(this.props.navigation.state.params.cardId, this.state.question, this.state.answer)
-				.then(() => {
+				.then((updatedCards) => {
 					this.setState({message: ''});
-					this.props.navigation.navigate('Home');
+					this.props.navigation.navigate('Deck', {deck, cards: updatedCards});
 				});
 		}
 	};
 	handleClose = () => {
-		this.props.navigation.navigate('Home');
+		const deck = this.props.navigation.state.params.deck;
+		const cards = this.props.navigation.state.params.cards;
+		this.props.navigation.navigate('Deck', {deck, cards});
 	};
 	render() {
 		const { navigation } = this.props;
@@ -57,15 +62,18 @@ class NewQuestionContainer extends React.Component {
 			: this.state
 		;
 		return (
-			<NewQuestion
-				handleQuestion={this.handleQuestion}
-				handleAnswer={this.handleAnswer}
-				handleSubmit={this.handleSubmit}
-				handleClose={this.handleClose}
-				question={question}
-				answer={answer}
-				message={message}
-			/>
+			<ScrollView style={{flex: 1}}>
+				<Header subtitle={`edit card`} showTitle={false} navigation={navigation} />
+				<NewQuestion
+					handleQuestion={this.handleQuestion}
+					handleAnswer={this.handleAnswer}
+					handleSubmit={this.handleSubmit}
+					handleClose={this.handleClose}
+					question={question}
+					answer={answer}
+					message={message}
+				/>
+			</ScrollView>
 		);
 	}
 }

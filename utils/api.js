@@ -162,5 +162,6 @@ export async function _removeCard(cardId) {
 		.filter(id => id !== cardId)
 		.reduce((filteredCards, id) => ({...filteredCards, [id]: cards[id]}), {});
 	await _setCards(updatedCards);
+	console.log(updatedCards);
 	return updatedCards;
 }

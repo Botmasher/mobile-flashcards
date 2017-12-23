@@ -1,5 +1,7 @@
 import React from 'react';
-import Quiz from '../components/';
+import { ScrollView } from 'react-native';
+import Quiz from '../components';
+import Header from '../../header/components';
 import PropTypes from 'prop-types';
 
 class QuizContainer extends React.Component {
@@ -26,17 +28,22 @@ class QuizContainer extends React.Component {
 	render() {
 		const { navigation } = this.props;
 		const { score, numAnswered, flipped } = this.state;
+		const deck = navigation.state.params ? navigation.state.params.deck : {};
 		const cards = navigation.state.params ? navigation.state.params.cards : {};
 		return (
-			<Quiz
-				navigation={navigation}
-				cards={cards}
-				score={score}
-				numAnswered={numAnswered}
-				flipped={flipped}
-				updateScore={this.updateScore}
-				flipCard={this.flipCard}
-			/>
+			<ScrollView style={{flex: 1}}>
+				<Header subtitle={`Deck Quiz`} showTitle={true} navigation={navigation} />
+				<Quiz
+					navigation={navigation}
+					deck={deck}
+					cards={cards}
+					score={score}
+					numAnswered={numAnswered}
+					flipped={flipped}
+					updateScore={this.updateScore}
+					flipCard={this.flipCard}
+				/>
+			</ScrollView>
 		);
 	}
 }

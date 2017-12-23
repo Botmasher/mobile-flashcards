@@ -81,25 +81,29 @@
 - [X] options to crud cards
 	- [X] edit a card in Deck
 	- [X] delete a card in Deck
-- [ ] apply some rough styling
-	- [ ] clearly display buttons and text inputs
+- [X] apply some rough styling
+	- [X] clearly display buttons and text inputs
 	- [X] create app header
-	- [ ] apply and customize app header for each core component
+	- [X] apply and customize app header for each core component
 	- [X] display icon and name card for each deck in DeckList
-	- [ ] display icon for deck in Deck
-	- [ ] styles for each view
-	- [ ] display a card for the Q and A
-	- [ ] make card flip between Q and A
+	- [X] display icon for deck in Deck
+	- [X] styles for each view
+	- [X] display a card for the Q and A
+	- [X] attempt card flip between Q and A - unsuccessful
 - [X] empty string deck names are not accepted
-- [ ] When the score is displayed, buttons are displayed to either start the quiz over or go back to the Individual Deck view.
-- [ ] NewDeck submit creates the deck and routes the user to the Individual Deck view for the new deck.
+- [X] Fix nav redirects so they do not all point 'Home'
+	- [X] When the score is displayed, buttons are displayed to either start the quiz over or go back to the Individual Deck view.
+	- [X] NewDeck submit creates the deck and routes the user to the Individual Deck view for the new deck.
+	- [X] return to Deck view after adding (+cancel), editing (+cancel) or deleting a Card
 - [ ] break out subcomponents
 	- [X] header for app + screen titles
-	- [ ] modal for delete in DeckList
+	- [X] modal for delete deck in DeckList
+	- [ ] modal for delete card in Deck
 	- [ ] edit vs add in NewDeck
 	- [ ] sorting picker for DeckList
 	- [ ] deck icon/display/img
 	- [ ] flippable card
+	- [ ] quiz results scoring
 	- [ ] individual deck item within DeckList
 	- [ ] deck title and stats for Deck and Quiz and maybe NewQuestion
 	- [ ] add a deck
@@ -107,6 +111,7 @@
 	- [ ] edit/delete control for a deck
 	- [ ] edit/delete control for a card
 - [ ] refine the styling
+	- [ ] move inline into created StyleSheets in each breakout component
 - [ ] notifications for reminders to study that day
 	- [ ] Logic for push notification has been implemented.
 	- [ ] Push notifications are generated at a specific time if the user hasn't completed at least one quiz for that day.
@@ -118,17 +123,29 @@
 - [ ] again, check the project rubric
 - [ ] update README and TODO based on changes made
 
+- [ ] Emulation and project submission: working on iOS vs Android
+David Harris Sep 26th at 1:15 PM: "I've made a change to the rubric for the project, due to the difficulty of finding reasonable emulation for iOS devices on non-Apple machines. Your code needs to work on either Android _or_ iOS. Please specify which platform you've tested in your README and the notes to your reviewer."
+
 ## Test
 
-## Go beyond
+## Update and go beyond
+- [ ] delay the empty deck message in DeckList when app starts
+- [ ] cards list (Deck view) has item border width expand when more text added; take up whole width
 - [ ] ability to add card to multiple decks
 - [ ] sorting options for decks and cards using existing selectors
 - [ ] naming/string collisions with currently existing decks and cards
+- [ ] animate card flip in Quiz
+	- [ ] simulate by squashing width quickly full to 0 to full
+	- [ ] have question text fade out before then answer fade in after "flip"
+- [ ] better methods for truncated text
+	- [ ] subtitles passed to Header
+	- [ ] questions on cards in Quiz
+	- [ ] also adjust Quiz card text size based on question/answer length
 - [ ] more consistent UI for crud operations
 	- [ ] edit a deck in Deck
 	- [ ] delete a deck in Deck
-	- [ ] edit a card in Deck?
-	- [ ] delete a card in Deck?
+	- [X] edit a card in Deck
+	- [X] delete a card in Deck
 - [ ] decks can currently have the same name
 - [ ] cards in a deck can currently have the same question
 - [ ] when you add/delete a card, it redirects back to the deck selection screen

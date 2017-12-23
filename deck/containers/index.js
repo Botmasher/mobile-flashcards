@@ -1,5 +1,7 @@
 import React from 'react';
+import { View } from 'react-native';
 import Deck from '../components/';
+import Header from '../../header/components';
 import { _removeCard } from '../../utils/api';
 import PropTypes from 'prop-types';
 
@@ -17,24 +19,29 @@ class DeckContainer extends React.Component {
 	closeModal = (removeCard) => {
 		this.setState({modal: false});
 		if (removeCard) {
-			_removeCard(this.state.focusedCardId).then(() => {
-				this.props.navigation.navigate('Home');
+			_removeCard(this.state.focusedCardId).then(updatedCards => {
+				this.props.navigation.navigate('Deck', {
+					deck: this.props.navigation.state.params.deck,
+					cards: updatedCards
+				});
 			});
 		}
 	};
 	render() {
 		const { navigation } = this.props;
-		const deck = navigation.state.params ? navigation.state.params.deck : props.deck;
-		const cards = navigation.state.params ? navigation.state.params.cards : props.cards;
+		const { deck, cards } = navigation.state.params;
 		return (
-			<Deck
-				deck={deck}
-				cards={cards}
-				navigation={navigation}
-				openModal={this.openModal}
-				closeModal={this.closeModal}
-				modal={this.state.modal}
-			/>
+			<View style={{flex: 1, flexDirection: 'column'}}>
+				<Header navigation={navigation} showTitle={true} subtitle={`${deck.name}`} />
+				<Deck
+					deck={deck}
+					cards={cards}
+					navigation={navigation}
+					openModal={this.openModal}
+					closeModal={this.closeModal}
+					modal={this.state.modal}
+				/>
+			</View>
 		);
 	}
 }

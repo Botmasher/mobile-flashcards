@@ -1,19 +1,34 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
+import { colors } from '../../utils/colors';
+import { size } from '../../utils/font';
 
 function NewQuestion({ question, answer, message, handleQuestion, handleAnswer, handleSubmit, handleClose }) {
 	return (
 		<View style={styles.container}>
-			<Text>New Question View</Text>
-			<Text>Question: </Text><TextInput onChangeText={(text) => handleQuestion(text)} value={question} />
-			<Text>Answer: </Text><TextInput onChangeText={(text) => handleAnswer(text)} value={answer} />
+			<Text style={{fontSize: size.med, textAlign: 'center'}}>Question:</Text>
+			<TextInput
+				multiline={true}
+				onChangeText={(text) => handleQuestion(text)}
+				value={question}
+				editable={true}
+				style={{margin: 10, padding: 6, backgroundColor: colors.white, borderRadius: 4, fontSize: size.med}}
+			/>
+			<Text style={{fontSize: size.med, textAlign: 'center'}}>Answer</Text>
+			<TextInput
+				multiline={true}
+				onChangeText={(text) => handleAnswer(text)}
+				value={answer}
+				editable={true}
+				style={{margin: 10, padding: 6, backgroundColor: colors.white, borderRadius: 4, fontSize: size.med}}
+			/>
 			{message!=='' && <Text>{message}</Text>}
 			<TouchableOpacity onPress={() => handleSubmit()}>
-				<Text>Submit</Text>
+				<Text style={{textAlign: 'center', marginBottom: 10, color: colors.secondary.dark, fontSize: size.large}}>Submit</Text>
 			</TouchableOpacity>
 			<TouchableOpacity onPress={() => handleClose()}>
-				<Text>Close</Text>
+				<Text style={{textAlign: 'center', marginBottom: 10, color: colors.secondary.dark, fontSize: size.large}}>Close</Text>
 			</TouchableOpacity>
 		</View>
 	);
@@ -21,7 +36,7 @@ function NewQuestion({ question, answer, message, handleQuestion, handleAnswer, 
 
 const styles = StyleSheet.create({
 	container: {
-		margin: 0
+		flex: 8
 	}
 });
 

@@ -2,11 +2,11 @@ import React from 'react';
 import { View, Text, FlatList, Modal, StyleSheet, TouchableOpacity, Platform, Dimensions } from 'react-native';
 import { countCardsPerDeck, dealCardsIntoDecks } from '../../utils/helpers';
 import PropTypes from 'prop-types';
+import ModalDelete from './ModalDelete';
+import Separator from './Separator';
 import { Foundation, MaterialCommunityIcons, Ionicons, Entypo } from '@expo/vector-icons';
 import { colors } from '../../utils/colors';
 import { size } from '../../utils/font';
-
-const windowDimensions = Dimensions.get('window');
 
 const renderListItem = (deck, navigation, cardsPerDeck, openModal) => {
 	return (
@@ -20,8 +20,8 @@ const renderListItem = (deck, navigation, cardsPerDeck, openModal) => {
 						}
 				))}>
 					{Platform.OS === 'ios'
-						? <Foundation name="page-multiple" size={size.icon.med} color={colors.primary.dark} style={styles.centerText} />
-						: <MaterialCommunityIcons name="note-multiple" size={size.icon.med} color={colors.primary.dark} style={styles.centerText} />
+						? <Foundation name="page-multiple" size={size.icon.large} color={colors.primary.dark} style={styles.centerText} />
+						: <MaterialCommunityIcons name="note-multiple" size={size.icon.large} color={colors.primary.dark} style={styles.centerText} />
 					}
 				</TouchableOpacity>
 			</View>
@@ -61,31 +61,17 @@ const renderListItem = (deck, navigation, cardsPerDeck, openModal) => {
 	);
 };
 
-const renderSeparator = () => (
-	<View style={styles.separator} />
-);
-
 function DeckList({ decks, cards, navigation, modal, openModal, closeModal }) {
 	const cardsPerDeck = dealCardsIntoDecks(cards);
 	return (
 		<View style={styles.container}>
-			<Modal visible={modal}>
-				<View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-					<Text>Do you want to delete this deck?</Text>
-					<TouchableOpacity onPress={() => closeModal(true)}>
-						<Text>Yes</Text>
-					</TouchableOpacity>
-					<TouchableOpacity onPress={() => closeModal(false)}>
-						<Text>No</Text>
-					</TouchableOpacity>
-				</View>
-			</Modal>
+			<ModalDelete visible={modal} close={closeModal} />
 			<View style={styles.row}>
 				<FlatList
 					data={Object.values(decks)}
 					renderItem={({item}) => renderListItem(item, navigation, cardsPerDeck, openModal)}
 					keyExtractor={(item, i) => i}
-					ItemSeparatorComponent={renderSeparator}
+					ItemSeparatorComponent={Separator}
 					style={{flex: 1}}
 				/>
 			</View>
@@ -100,7 +86,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center'
 	},
 	deckHeader: {
-		fontSize: size.large,
+		fontSize: size.med,
 		fontWeight: 'bold'
 	},
 	centerText: {
@@ -119,22 +105,12 @@ const styles = StyleSheet.create({
 	},
 	listItem: {
 		backgroundColor: colors.white,
-		flex: 10,
-		width: windowDimensions.width,
+		width: Dimensions.get('window').width,
 		flexDirection: 'row'
 	},
 	listCardIcon: {
 		flex: 2,
-		marginTop: 0,
-		justifyContent: 'flex-start'
-	},
-	separator: {
-		height: 1,
-		marginTop: 10,
-		marginBottom: 10,
-		width: '80%',
-		backgroundColor: colors.gray.light,
-		marginLeft: windowDimensions.width*0.1
+		justifyContent: 'center'
 	}
 });
 

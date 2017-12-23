@@ -1,11 +1,14 @@
 export const size = {
-	small: 10,
-	med: 15,
-	large: 18,
-	huge: 26,
+	tiny: 8,
+	small: 12,
+	med: 18,
+	large: 24,
+	huge: 30,
 	icon: {
-		small: 20,
-		med: 60,
-		large: 90
+		tiny: 18,
+		small: 30,
+		med: 50,
+		large: 70,
+		huge: 100
 	}
 };

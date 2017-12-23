@@ -2,16 +2,23 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { colors } from '../../utils/colors';
 import { size } from '../../utils/font';
-import { Entypo } from '@expo/vector-icons';
 
-function Header({ navigation, subtitle }) {
+function Header({ navigation, subtitle, showTitle }) {
+	const truncatedSubtitle = ['.', '?', ' ', '!', ':', ';'].includes(subtitle[subtitle.length-1])
+		? subtitle.substring(0, 28).concat('...')
+		: subtitle.substring(0, 29).concat('...')
+	;
 	return (
 		<View style={styles.container}>
-			<Text style={styles.title}>FlashCards</Text>
-			<TouchableOpacity onPress={() => navigation.navigate('NewDeck')} style={styles.row}>
-				<Text style={styles.subtitle}>{subtitle}</Text>
-				<Entypo name="add-to-list" size={size.icon.small} color={colors.white} style={{marginLeft: 20}} />
-			</TouchableOpacity>
+			{showTitle && (
+				<TouchableOpacity onPress={() => navigation.navigate('Home')}>
+					<Text style={styles.title}>FlashCards</Text>
+				</TouchableOpacity>
+			)}
+			{showTitle
+				? <Text style={styles.subtitle}>{subtitle.length > 32 ? truncatedSubtitle : subtitle}</Text>
+				: <Text style={styles.title}>{subtitle.length > 29 ? truncatedSubtitle : subtitle}</Text>
+			}
 		</View>
 	);
 }
@@ -21,7 +28,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 		backgroundColor: colors.primary.dark,
-		flex:1,
+		flex: 1,
 		marginBottom: 20
 	},
 	title: {
