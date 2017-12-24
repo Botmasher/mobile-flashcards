@@ -39,8 +39,7 @@ class NewQuestionContainer extends React.Component {
 				.then((updatedCards) => {
 					this.setState({message: ''});
 					this.props.navigation.navigate('Deck', {deck, cards: updatedCards});
-				})
-				.then(() => clearLocalNotification().then(setLocalNotification));
+				});
 		} else if (!this.state.question || !this.state.answer) {
 			this.setState({message: 'Please fill out a Question and Answer!'});
 		} else {
@@ -48,8 +47,7 @@ class NewQuestionContainer extends React.Component {
 				.then((updatedCards) => {
 					this.setState({message: ''});
 					this.props.navigation.navigate('Deck', {deck, cards: updatedCards});
-				})
-				.then(() => clearLocalNotification().then(setLocalNotification));
+				});
 		}
 	};
 	handleClose = () => {

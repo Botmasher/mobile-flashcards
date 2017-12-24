@@ -1,10 +1,12 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
+import { clearLocalNotification, setLocalNotification } from '../../utils/helpers';
 import { colors } from '../../utils/colors';
 import { size } from '../../utils/font';
 
 function Results({ navigation, deck, cards, score, cardCount }) {
+	clearLocalNotification().then(() => setLocalNotification());
 	return (
 		<View style={styles.container}>
 			<Text style={styles.score}>{Math.round(score/cardCount * 100)}%</Text>

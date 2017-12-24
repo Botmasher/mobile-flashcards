@@ -19,16 +19,14 @@ class NewDeckContainer extends React.Component {
 	handleSubmit = () => {
 		if (!this.props.navigation.state.params && this.state.edited) {
 			_addDeck(this.state.text.trim())
-				.then(() => this.props.navigation.navigate('Home'))
-				.then(() => clearLocalNotification().then(setLocalNotification));
+				.then(() => this.props.navigation.navigate('Home'));
 		} else if (!this.state.text) {
 			this.setState({message: 'Please fill out a title for your deck!'});
 		} else if (!this.state.edited) {
 			this.props.navigation.navigate('Home');
 		} else {
 			_updateDeck(this.props.navigation.state.params.deckId, this.state.text.trim())
-				.then(() => this.props.navigation.navigate('Home'))
-				.then(() => clearLocalNotification().then(setLocalNotification));
+				.then(() => this.props.navigation.navigate('Home'));
 		}
 	}
 	render() {

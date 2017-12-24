@@ -116,7 +116,6 @@
 	- [X] notifications and permissions
 	- [X] reselect
 	- [X] prop-types (already included)
-- [ ] reread and adjust based on project requirements (beginning of planning above)
 - [ ] again, check the project rubric
 - [ ] update README and TODO based on changes made
 - [ ] Emulation and project submission: working on iOS vs Android
@@ -125,6 +124,9 @@
 ## Test
 
 ## Update and go beyond
+- [ ] SortPicker not clearly interactable - toggle as larger view/modal below instead of cropped and placed in top right tools
+- [ ] alternative to UUIDs since Crypto not supported - Crypto Browserify?
+- [ ] DeckList items: split 2/3 R deck touch to edit, 1/3 L trash can touch to delete
 - [ ] delay the empty deck message in DeckList when app starts
 - [ ] cards list (Deck view) has item border width expand when more text added; take up whole width
 - [ ] ability to add card to multiple decks

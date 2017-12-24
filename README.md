@@ -1,76 +1,89 @@
 # Mobile Flashcards
 
-## About
-
-This project gives you decks of cards to quiz yourself and your friends. It was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app). It follows the [Udacity rubric](https://review.udacity.com/#!/rubrics/1021/view) for this project and aims to adhere to the [Nanodegree styleguide](http://udacity.github.io/frontend-nanodegree-styleguide/).
-
-For more information about performing common React Native tasks, check out the most recent version of [this guide](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
+## About this project
+This React Native iOS app allows you to build decks of flashcards and to quiz yourself and your friends. It was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app). It follows the [Udacity rubric](https://review.udacity.com/#!/rubrics/1021/view) for this project and aims to adhere to the [Nanodegree styleguide](http://udacity.github.io/frontend-nanodegree-styleguide/).
 
 ## Getting Started
 Instructions for installing and running the app on your local machine go here. Also include notes about using an iOS/Android simulator vs mobile device.
 
-## What you're getting
-The basic overview of the files/folders and list of dependencies go here.
+To install and run the app on your local machine:
+1. make sure that `npm` / `yarn` are installed
+2. fork, clone or download this project
+3. navigate to the project root and run `yarn install` or `npm install`
+4. start the project server with `yarn start` or `npm start`
 
-## Structure
+To simulate the project on your local Mac (tested with a MacBook Air, Early 2015):
+1. verify that [Xcode](https://developer.apple.com/xcode/) is installed (tested with Xcode 9.2)
+2. check that watchman and command line tools are installed using [this guide](https://facebook.github.io/react-native/docs/getting-started.html)
+3. navigate to the project directory
+4. start the app with `yarn start`
+5. select `i` to open the project in the iOS simulator
 
-### Data
+To run the installed app on your mobile device:
+1. install the [Expo client app](https://expo.io/) on your mobile device
+2. navigate to the project directory on your local machine
+3. run `yarn start`
+4. scan the QR code in the terminal or enter the address in the Expo app
 
-### Components
+## Dependencies:
+FlashCards is built atop the following dependencies:
+- [Node](https://nodejs.org/)
+- [Yarn](https://yarnpkg.com/)
+- [React](https://github.com/facebook/react)
+- [React Native](https://github.com/facebook/react-native)
+- [Expo](https://expo.io/)
+- [React Navigation](https://github.com/react-community/react-navigation)
+- [Reselect](https://github.com/reactjs/reselect)
+- [uuid](https://www.npmjs.com/package/uuid)
 
---------------
-# Project Details From Udacity:
+## App Structure
+FlashCards is built out of React Native components and leverages local storage.
 
-## Project Overview
-For the **UdaciCards** project, you will build a mobile application (Android or iOS - or both) that allows users to study collections of flashcards. The app will allow users to create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks.
-
-## Why this project?
-This project encompasses the fundamental aspects of building a native application including handling infinite lists, routing, and user input. By building this project, you will gain an understanding of how to use React Native to build an iOS and Android application.
-
-## Specification
-You'll create your project using **create-react-native-app**. There will be no starter code that you need to download.
-
-The specification provided below is the minimum required for this project. You may extend your project as you like, however.
-
-### Specific Requirements
-- Use create-react-native-app to build your project.
-- Allow users to create a deck which can hold an unlimited number of cards.
-- Allow users to add a card to a specific deck.
-- The front of the card should display the question.
-- The back of the card should display the answer.
-- Users should be able to quiz themselves on a specific deck and receive a score once they're done.
-- Users should receive a notification to remind themselves to study if they haven't already for that day.
-
-### Views
-Your application should have, at a minimum, five views.
-
+### Core Views
 1. Deck List View (Default View)
-    - displays the title of each Deck
-    - displays the number of cards in each deck
+  - displays the title of each Deck
+  - displays the number of cards in each deck
 2. Individual Deck View
-    - displays the title of the Deck
-    - displays the number of cards in the deck
-    - displays an option to start a quiz on this specific deck
-    - An option to add a new question to the deck
+  - displays the title of the Deck
+  - displays the number of cards in the deck
+  - displays an option to start a quiz on this specific deck
+  - an option to add a new question to the deck
 3. Quiz View
-    - displays a card question
-    - an option to view the answer (flips the card)
-    - a "Correct" button
-    - an "Incorrect" button
-    - the number of cards left in the quiz
-    - Displays the percentage correct once the quiz is complete
+  - displays a card question
+  - an option to view the answer (flips the card)
+  - a "Correct" button
+  - an "Incorrect" button
+  - the number of cards left in the quiz
+  - displays the percentage correct once the quiz is complete
 4. New Deck View
-    - An option to enter in the title for the new deck
-    - An option to submit the new deck title
+  - an option to enter in the title for the new deck
+  - an option to submit the new deck title
 5. New Question View
-    - An option to enter in the question
-    - An option to enter in the answer
-    - An option to submit the new question
+  - an option to enter in the question
+  - an option to enter in the answer
+  - an option to submit the new question
+
+Subcomponents break out additional UI for certain features.
+
+Navigation between screens is accomplished with `StackNavigator`.
+
+### Files and Folders
+Folders are structured by feature (following the five main views above), akin to [ducks for Redux](https://medium.freecodecamp.org/scaling-your-redux-app-with-ducks-6115955638be). Presentation components are separated from container components. The root `App.js` mainly routes between screens and sets a daily local notification (method in `/utils/helpers.js` and reset in Quiz results subcomponent).
+
+`reselect` selectors are used in Deck List to rearrange all cards into per cards deck.
+
+Additional code was abstracted into `/utils`:
+- `api` for crud operations on local storage
+- `colors` for text and elements
+- `font` for text and icon sizes
+- `helpers` sorting functions and setup for notifications
 
 ### Data
-We'll use `AsyncStorage` to store our decks and flashcards. Redux is optional for this project.
+Local storage divides FlashCards data into `decks` and `cards`. Besides a uuid `id` and a `timestamp`, each deck in `decks` stores a presentation `name`, and each card in `cards` stores a `question` and an `answer`. Deck List fetches `cards` and `decks`, and uses them to deal cards into cards per deck with selectors. New Deck adds or edits a deck. New Question adds or edits a question. Individual decks can be removed in Deck List list items. Individual cards can be removed in Deck list items.
 
-Using `AsyncStorage` you'll manage an object whose shape is similar to this:
+Methods for fetching, creating, updating, and deleting decks and cards are found in `utils/api.js`.
+
+The shape of these objects differs from a simpler original example in the Udacity specifications:
 
 ```
 {
@@ -99,7 +112,40 @@ Using `AsyncStorage` you'll manage an object whose shape is similar to this:
 }
 ```
 
-Notice each deck creates a new key on the object. Each deck has a `title` and a `questions` key. `title` is the title for the specific deck and `questions` is an array of questions and answers for that deck.
+In this example, each deck creates a new key on the object. Each deck has a `title` and a `questions` key. `title` is the title for the specific deck and `questions` is an array of questions and answers for that deck.
+
+In FlashCards, the current storage instead takes this shape:
+
+```
+decks: {
+  'uuid': {
+    id: 'uuid',
+    name: '',
+    timestamp: Date.now()
+  },
+  ...
+}
+
+cards: {
+  'uuid': {
+    id: 'uuid',
+    question: '',
+    answer: '',
+    timestamp: Date.now(),
+    decks: []      // id for each deck containing this card
+  },
+  ...
+}
+```
+
+This separates a card model from a deck model, where card can belong to one or more decks.
+
+## Contributing
+
+If you're familiar with React Native and would like to contribute to this app, feel free to fork the repository and make a pull request with updates. Before you do, please check my constraints from a previous React Udacity [CONTRIBUTING.md](https://github.com/Botmasher/reactnd-myreads/blob/master/CONTRIBUTING.md), since those points also apply to this project.
+
+For more info about common React Native tasks, check the most recent version of [this guide](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
+
 
 ### Tip
 To manage your `AsyncStorage` database, you'll want to create four different helper methods.
