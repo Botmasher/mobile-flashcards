@@ -56,7 +56,7 @@ export async function _addDeck(name) {
 		}
 	};
 	await _mergeDecks(updatedDecks);
-	return updatedDecks;
+	return {id: newDeckId, decks: updatedDecks};
 }
 
 export async function _addCard(deckId, question, answer) {
@@ -80,10 +80,10 @@ export async function _updateDeck(deckId, name) {
 	const decks = await _fetchDecks();
 	const updatedDecks = {
 		...decks,
-		[deckId]: {name}
+		[deckId]: {...decks[deckId], name}
 	};
 	await _mergeDecks(updatedDecks);
-	return updatedDecks;
+	return {id: deckId, decks: updatedDecks};
 }
 
 export async function _updateCard(cardId, question=null, answer=null) {

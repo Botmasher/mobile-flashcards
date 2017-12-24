@@ -5,15 +5,15 @@ import { clearLocalNotification, setLocalNotification } from '../../utils/helper
 import { colors } from '../../utils/colors';
 import { size } from '../../utils/font';
 
-function Results({ navigation, deck, cards, score, cardCount }) {
+function Results({ navigation, deck, cards, score, cardCount, resetQuiz }) {
 	clearLocalNotification().then(() => setLocalNotification());
 	return (
 		<View style={styles.container}>
 			<Text style={styles.score}>{Math.round(score/cardCount * 100)}%</Text>
-			<TouchableOpacity onPress={() => navigation.navigate('Quiz', {deck, cards})}>
+			<TouchableOpacity onPress={() => resetQuiz()}>
 				<Text style={styles.button}>Restart Quiz</Text>
 			</TouchableOpacity>
-			<TouchableOpacity onPress={() => navigation.navigate('Deck', {deck, cards})}>
+			<TouchableOpacity onPress={() => navigation.goBack()}>
 				<Text style={styles.button}>Back to deck</Text>
 			</TouchableOpacity>
 		</View>
@@ -43,7 +43,8 @@ Results.propTypes = {
 	deck: PropTypes.object.isRequired,
 	cards: PropTypes.object.isRequired,
 	score: PropTypes.number,
-	cardCount: PropTypes.number
+	cardCount: PropTypes.number,
+	resetQuiz: PropTypes.func.isRequired
 };
 
 export default Results;

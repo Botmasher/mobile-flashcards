@@ -25,6 +25,9 @@ class QuizContainer extends React.Component {
 			flipped: !this.state.flipped
 		}));
 	};
+	resetQuiz = () => {
+		this.setState({score: 0, numAnswered: 0, flipped: false});
+	};
 	render() {
 		const { navigation } = this.props;
 		const { score, numAnswered, flipped } = this.state;
@@ -42,6 +45,7 @@ class QuizContainer extends React.Component {
 					flipped={flipped}
 					updateScore={this.updateScore}
 					flipCard={this.flipCard}
+					resetQuiz={this.resetQuiz}
 				/>
 			</ScrollView>
 		);

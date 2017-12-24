@@ -6,20 +6,20 @@ import ModalRemove from './ModalRemove';
 import { colors } from '../../utils/colors';
 import { size } from '../../utils/font';
 
-function Deck({ deck, allCards, cardsInDeck, navigation, modal, openModal, closeModal }) {
+function Deck({ deck, allCards, cardsInDeck, navigation, modal, openModal, closeModal, onGoBack }) {
 	return (
 		<View style={styles.container}>
 
 			<ModalRemove visible={modal} close={closeModal} />
 
-			<Text style={styles.centerText}>This deck contains {Object.keys(allCards).length} cards</Text>
+			<Text style={styles.centerText}>This deck contains {cardsInDeck ? Object.keys(cardsInDeck).length : 0} cards</Text>
 
-			<TouchableOpacity onPress={() => navigation.navigate('NewQuestion', {deck, cards: allCards})}>
+			<TouchableOpacity onPress={() => navigation.navigate('NewQuestion', {deck, cards: allCards, onGoBack})}>
 				<Text style={styles.buttonBold}>+ add card</Text>
 			</TouchableOpacity>
 
-			{Object.keys(allCards).length > 0 && (
-				<TouchableOpacity onPress={() => navigation.navigate('Quiz', {deck, cards: allCards})}>
+			{cardsInDeck && Object.keys(cardsInDeck).length > 0 && (
+				<TouchableOpacity onPress={() => navigation.navigate('Quiz', {deck, cards: cardsInDeck})}>
 					<Text style={styles.button}>start quiz</Text>
 				</TouchableOpacity>
 			)}
@@ -27,7 +27,7 @@ function Deck({ deck, allCards, cardsInDeck, navigation, modal, openModal, close
 			<View style={{flex: 1}}>
 				<FlatList
 					data={cardsInDeck ? Object.values(cardsInDeck) : []}
-					renderItem={({item}) => <CardItem card={item} deck={deck} cards={allCards} navigation={navigation} openModal={openModal} />}
+					renderItem={({item}) => <CardItem card={item} deck={deck} cards={allCards} navigation={navigation} openModal={openModal} onGoBack={onGoBack} />}
 					keyExtractor={(item, i) => i}
 					style={{flex: 1}}
 				/>
@@ -67,7 +67,8 @@ Deck.propTypes = {
 	navigation: PropTypes.object.isRequired,
 	modal: PropTypes.bool.isRequired,
 	openModal: PropTypes.func.isRequired,
-	closeModal: PropTypes.func.isRequired
+	closeModal: PropTypes.func.isRequired,
+	onGoBack: PropTypes.func.isRequired
 };
 
 export default Deck;

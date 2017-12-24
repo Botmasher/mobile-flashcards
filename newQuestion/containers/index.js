@@ -38,7 +38,8 @@ class NewQuestionContainer extends React.Component {
 			_addCard(this.props.navigation.state.params.deck.id, this.state.question, this.state.answer)
 				.then((updatedCards) => {
 					this.setState({message: ''});
-					this.props.navigation.navigate('Deck', {deck, cards: updatedCards});
+					this.props.navigation.state.params.onGoBack();
+					this.props.navigation.goBack();
 				});
 		} else if (!this.state.question || !this.state.answer) {
 			this.setState({message: 'Please fill out a Question and Answer!'});
@@ -46,7 +47,8 @@ class NewQuestionContainer extends React.Component {
 			_updateCard(this.props.navigation.state.params.cardId, this.state.question, this.state.answer)
 				.then((updatedCards) => {
 					this.setState({message: ''});
-					this.props.navigation.navigate('Deck', {deck, cards: updatedCards});
+					this.props.navigation.state.params.onGoBack();
+					this.props.navigation.goBack();
 				});
 		}
 	};
@@ -64,7 +66,7 @@ class NewQuestionContainer extends React.Component {
 		;
 		return (
 			<ScrollView style={{flex: 1}}>
-				<Header subtitle={`edit card`} showTitle={false} navigation={navigation} />
+				<Header subtitle={navigation.state.params.cardId ? `edit card` : `new card`} showTitle={false} navigation={navigation} />
 				<NewQuestion
 					handleQuestion={this.handleQuestion}
 					handleAnswer={this.handleAnswer}

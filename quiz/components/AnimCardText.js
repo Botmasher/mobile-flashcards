@@ -10,12 +10,18 @@ class AnimCardText extends React.Component {
 	}
 	componentDidMount() {
 		Animated.sequence([
-			Animated.delay(200),
+			Animated.delay(250),
 			Animated.timing(this.state.opacity, {
 				toValue: 1,
 				duration: 250
 			})
 		]).start();
+	}
+	componentWillUnmount() {
+		Animated.timing(this.state.opacity, {
+			toValue: 0,
+			duration: 250
+		}).start();		
 	}
   render() {
 		return (

@@ -1,10 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Platform, Dimensions } from 'react-native';
+import PropTypes from 'prop-types';
 import { Foundation, MaterialCommunityIcons, Ionicons, Entypo } from '@expo/vector-icons';
 import { colors } from '../../utils/colors';
 import { size } from '../../utils/font';
 
-const DeckItem = ({ deck, navigation, cardsPerDeck, openModal }) => {
+const DeckItem = ({ deck, navigation, cards, cardsPerDeck, openModal }) => {
 	return (
 		<View key={deck.id} style={styles.listItem}>
 			<View style={styles.listCardIcon}>
@@ -39,7 +40,7 @@ const DeckItem = ({ deck, navigation, cardsPerDeck, openModal }) => {
 					</Text>
 				</View>
 				<View style={styles.row}>
-					<TouchableOpacity onPress={() => navigation.navigate('NewDeck', {text: deck.name, deckId: deck.id})}>
+					<TouchableOpacity onPress={() => navigation.navigate('NewDeck', {text: deck.name, deckId: deck.id, cards})}>
 					 {Platform.OS === 'ios'
 					 	? <Foundation name="pencil" size={size.icon.small} color={colors.gray.dark} style={styles.rowIcon} />
 					 	: <MaterialCommunityIcons name="pencil" color={colors.gray.dark} size={size.icon.small} style={styles.rowIcon} />
@@ -86,5 +87,13 @@ const styles = StyleSheet.create({
 		justifyContent: 'center'
 	}
 });
+
+DeckItem.propTypes = {
+	deck: PropTypes.object.isRequired,
+	cards: PropTypes.object.isRequired,
+	navigation: PropTypes.object.isRequired,
+	cardsPerDeck: PropTypes.object.isRequired,
+	openModal: PropTypes.func.isRequired
+};
 
 export default DeckItem;

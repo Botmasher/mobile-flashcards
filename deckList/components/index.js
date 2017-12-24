@@ -16,7 +16,7 @@ function DeckList({ decks, cards, navigation, modal, openModal, closeModal }) {
 			<View style={styles.row}>
 				<FlatList
 					data={Object.values(decks)}
-					renderItem={({item}) => <DeckItem deck={item} navigation={navigation} cardsPerDeck={cardsPerDeck} openModal={openModal} />}
+					renderItem={({item}) => <DeckItem deck={item} navigation={navigation} cards={cards} cardsPerDeck={cardsPerDeck} openModal={openModal} />}
 					keyExtractor={(item, i) => i}
 					ItemSeparatorComponent={Separator}
 					style={{flex: 1}}

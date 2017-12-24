@@ -5,7 +5,7 @@ import { FontAwesome, MaterialCommunityIcons, Foundation, Ionicons } from '@expo
 import { colors } from '../../utils/colors';
 import { size } from '../../utils/font';
 
-function CardItem({ card, deck, cards, navigation, openModal }) {
+function CardItem({ card, deck, cards, navigation, openModal, onGoBack }) {
 	return (
 		<View key={card.id} style={styles.container}>
 			<TouchableOpacity onPress={() => navigation.navigate('NewQuestion', {
@@ -27,7 +27,8 @@ function CardItem({ card, deck, cards, navigation, openModal }) {
 					deck,
 					cards,
 					question: card.question,
-					answer: card.answer
+					answer: card.answer,
+					onGoBack
 				})}>
 					{Platform.OS === 'ios'
 					 	? <Foundation name="pencil" size={size.icon.small} color={colors.gray.dark} style={styles.icon} />
@@ -70,7 +71,8 @@ CardItem.propTypes = {
 	card: PropTypes.object.isRequired,
 	deck: PropTypes.object.isRequired,
 	cards: PropTypes.object.isRequired,
-	openModal: PropTypes.func.isRequired
+	openModal: PropTypes.func.isRequired,
+	onGoBack: PropTypes.func.isRequired
 };
 
 export default CardItem;

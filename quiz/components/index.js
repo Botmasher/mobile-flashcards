@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { colors } from '../../utils/colors';
 import { size } from '../../utils/font';
 
-function Quiz({ navigation, deck, cards, score, flipped, numAnswered, updateScore, flipCard }) {
+function Quiz({ navigation, deck, cards, score, flipped, numAnswered, updateScore, flipCard, resetQuiz }) {
 	const cardCount = Object.keys(cards).length;
 	const card = cards[Object.keys(cards)[numAnswered]];
 	return (
@@ -15,7 +15,7 @@ function Quiz({ navigation, deck, cards, score, flipped, numAnswered, updateScor
 			<Text style={styles.stats}>Cards left in quiz: {cardCount-numAnswered}</Text>
 			{numAnswered < cardCount
 				? <FlashCard flipped={flipped} question={card.question} answer={card.answer} flipCard={flipCard} updateScore={updateScore} />
-				: <Results navigation={navigation} deck={deck} cards={cards} score={score} cardCount={cardCount} />
+				: <Results navigation={navigation} deck={deck} cards={cards} score={score} cardCount={cardCount} resetQuiz={resetQuiz} />
 			}
 		</View>
 	);
@@ -42,7 +42,8 @@ Quiz.propTypes = {
 	flipped: PropTypes.bool.isRequired,
 	numAnswered: PropTypes.number.isRequired,
 	updateScore: PropTypes.func.isRequired,
-	flipCard: PropTypes.func.isRequired
+	flipCard: PropTypes.func.isRequired,
+	resetQuiz: PropTypes.func.isRequired
 };
 
 export default Quiz;

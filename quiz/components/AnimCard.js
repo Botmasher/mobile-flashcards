@@ -14,6 +14,15 @@ class AnimCard extends React.Component {
 			duration: 250
 		}).start();
 	}
+	componentWillUnmount() {
+		Animated.sequence([
+			Animated.delay(250),
+			Animated.timing(this.state.width, {
+				toValue: 0,
+				duration: 250
+			})
+		]).start();
+	}
   render() {
 		return (
 			<Animated.View style={[this.props.style, {width: this.state.width}]}>
