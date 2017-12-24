@@ -19,6 +19,9 @@ function FlashCard({ flipped, question, answer, flipCard, updateScore }) {
 					</AnimCardText>
 				</AnimCard>
 			</TouchableOpacity>
+			<TouchableOpacity onPress={() => flipCard()}>
+				<Text style={{textAlign: 'center', fontSize: size.med, marginBottom: 5}}>Show answer</Text>
+			</TouchableOpacity>
 			<View style={styles.row}>
 				<TouchableOpacity onPress={() => updateScore(true)} style={{paddingRight: 20}}>
 					<Text style={styles.btnCorrect}>Correct</Text>

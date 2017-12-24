@@ -3,6 +3,9 @@
 ## About this project
 This React Native iOS app allows you to build decks of flashcards and to quiz yourself and your friends. It was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app). It follows the [Udacity rubric](https://review.udacity.com/#!/rubrics/1021/view) for this project and aims to adhere to the [Nanodegree styleguide](http://udacity.github.io/frontend-nanodegree-styleguide/).
 
+## Platform
+This project was built to work on iOS. It has been tested on an iPhone 6S and X, and in multiple simulators using Xcode 9.2. It has not been tested for Android.
+
 ## Getting Started
 Instructions for installing and running the app on your local machine go here. Also include notes about using an iOS/Android simulator vs mobile device.
 
