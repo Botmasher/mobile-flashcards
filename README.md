@@ -140,17 +140,17 @@ cards: {
 
 This separates a card model from a deck model, where card can belong to one or more decks.
 
+Another difference between specifications and buildout: four helper methods were suggested for managing the `AsyncStorage` database:
+
+`getDecks`: return all of the decks along with their titles, questions, and answers. 
+`getDeck`: take in a single `id` argument and return the deck associated with that id. 
+`saveDeckTitle`: take in a single `title` argument and add it to the decks. 
+`addCardToDeck`: take in two arguments, `title` and `card`, and will add the card to the list of questions for the deck with the associated title.
+
+The final API arsenal is more robust and can be found in `utils/api.js`.
+
 ## Contributing
 
 If you're familiar with React Native and would like to contribute to this app, feel free to fork the repository and make a pull request with updates. Before you do, please check my constraints from a previous React Udacity [CONTRIBUTING.md](https://github.com/Botmasher/reactnd-myreads/blob/master/CONTRIBUTING.md), since those points also apply to this project.
 
 For more info about common React Native tasks, check the most recent version of [this guide](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
-
-
-### Tip
-To manage your `AsyncStorage` database, you'll want to create four different helper methods.
-
-`getDecks`: return all of the decks along with their titles, questions, and answers. 
-`getDeck`: take in a single `id` argument and return the deck associated with that id. 
-`saveDeckTitle`: take in a single `title` argument and add it to the decks. 
-`addCardToDeck`: take in two arguments, `title` and `card`, and will add the card to the list of questions for the deck with the associated title. 
