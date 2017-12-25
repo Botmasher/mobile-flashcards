@@ -8,7 +8,7 @@ import Separator from './Separator';
 import { colors } from '../../utils/colors';
 import { size } from '../../utils/font';
 
-function DeckList({ decks, cards, navigation, modal, openModal, closeModal }) {
+function DeckList({ decks, cards, navigation, modal, openModal, closeModal, refresh }) {
 	const cardsPerDeck = dealCardsIntoDecks(cards);
 	return (
 		<View style={styles.container}>
@@ -16,7 +16,16 @@ function DeckList({ decks, cards, navigation, modal, openModal, closeModal }) {
 			<View style={styles.row}>
 				<FlatList
 					data={Object.values(decks)}
-					renderItem={({item}) => <DeckItem deck={item} navigation={navigation} cards={cards} cardsPerDeck={cardsPerDeck} openModal={openModal} />}
+					renderItem={({item}) => (
+						<DeckItem
+							deck={item}
+							navigation={navigation}
+							cards={cards}
+							cardsPerDeck={cardsPerDeck}
+							openModal={openModal}
+							refreshDeckList={refresh}
+						/>
+					)}
 					keyExtractor={(item, i) => i}
 					ItemSeparatorComponent={Separator}
 					style={{flex: 1}}
@@ -44,7 +53,8 @@ DeckList.propTypes = {
 	navigation: PropTypes.object.isRequired,
 	modal: PropTypes.bool.isRequired,
 	openModal: PropTypes.func.isRequired,
-	closeModal: PropTypes.func.isRequired
+	closeModal: PropTypes.func.isRequired,
+	refresh: PropTypes.func.isRequired
 };
 
 export default DeckList;

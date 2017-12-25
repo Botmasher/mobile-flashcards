@@ -20,6 +20,7 @@ class NewDeckContainer extends React.Component {
 		if (!this.props.navigation.state.params && this.state.edited) {
 			_addDeck(this.state.text.trim()).then(({id, decks}) => {
 				_fetchCards().then(cards => {
+					this.props.navigation.state.params.refreshDeckList();
 					this.props.navigation.navigate('Deck', {deck: decks[id], cards: cards});
 				});
 			});
@@ -30,6 +31,7 @@ class NewDeckContainer extends React.Component {
 		} else {
 			_updateDeck(this.props.navigation.state.params.deckId, this.state.text.trim())
 				.then(({id, decks}) => {
+					this.props.navigation.state.params.refreshDeckList();
 					this.props.navigation.navigate('Deck', {
 						deck: decks[id],
 						cards: this.props.navigation.state.params.cards

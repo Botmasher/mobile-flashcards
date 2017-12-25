@@ -28,14 +28,20 @@ class DeckListContainer extends React.Component {
 	}
 	fetchDecks = () => {
 		_fetchDecks().then(data => {
-			const decks = selectDecksSortedNum({decks: data, property: 'timestamp', ascending: this.state.sort.ascending});
+			const decks = selectDecksSortedNum({decks: data, property: 'timestamp', ascending: true});
 			this.setState({decks});
 		});
 	};
 	fetchCards = () => {
 		_fetchCards().then(data => this.setState({cards: data}));
 	};
-
+	refresh = () => {
+		_fetchDecks()
+			.then(decks => this.setState({decks: selectDecksSortedNum({decks, property: 'timestamp', ascending: false})}))
+			.then(() => _fetchCards()
+				.then(cards => this.setState({cards}))
+			);
+	};
 	handleSort = pickerValue => {
 		const [property, ascDesc] = pickerValue.split('-');
 		const sortState = {
@@ -67,7 +73,7 @@ class DeckListContainer extends React.Component {
 					{Object.keys(decks).length > 2 && (
 						<SortPicker pickerValue={pickerValue} handleSort={this.handleSort} />
 					)}
-					<TouchableOpacity onPress={() => navigation.navigate('NewDeck')}>
+					<TouchableOpacity onPress={() => navigation.navigate('NewDeck', {refreshDeckList: this.refresh})}>
 						{Platform.OS === 'ios'
 							? <Entypo name="add-to-list" size={size.icon.small} color={colors.gray.dark} style={{marginTop: 5, paddingRight: 10}} />
 							: <MaterialIcons name="playlist-add" size={size.icon.small} color={colors.gray.dark} style={{marginTop: 5, paddingRight: 10}} />
@@ -88,6 +94,7 @@ class DeckListContainer extends React.Component {
 							modal={modal}
 							openModal={this.openModal}
 							closeModal={this.closeModal}
+							refresh={this.refresh}
 						/>
 				}
 			</View>

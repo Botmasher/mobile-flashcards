@@ -141,6 +141,13 @@
 	- see [this detailed explanation](http://browniefed.com/react-native-animation-book/api/ANIMATED_REMOVE_LISTENERS.html) to learn about animated remove listeners	
 - [ ] learn more about writing READMEs in [this course](https://www.udacity.com/course/writing-readmes--ud777)
 
+## Feedback (December 23, 2017 after above changes)
+- The Deck List view includes a form for creating a new deck which should just be an input for the title and a 'Create Deck' button.
+	- [X] Pressing the button correctly creates the deck and routes the user to the Individual Deck view for the new deck.
+	- [X] Coming back on the Deck List view doesn't show the created deck unless the user reloads the application. In order to meet this requirement, user should be able to immediately see the newly created deck in the Deck List View.
+- Quiz card animation
+	- [ ] I would suggest adding a remove listener on componentWillUnmount. You can also refer to the link here http://browniefed.com/react-native-animation-book/api/ANIMATED_REMOVE_LISTENERS.html for detailed explanation
+
 ## Test
 
 ## Update and go beyond

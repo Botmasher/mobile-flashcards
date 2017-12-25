@@ -5,7 +5,7 @@ import { Foundation, MaterialCommunityIcons, Ionicons, Entypo } from '@expo/vect
 import { colors } from '../../utils/colors';
 import { size } from '../../utils/font';
 
-const DeckItem = ({ deck, navigation, cards, cardsPerDeck, openModal }) => {
+const DeckItem = ({ deck, navigation, cards, cardsPerDeck, openModal, refreshDeckList }) => {
 	return (
 		<View key={deck.id} style={styles.listItem}>
 			<View style={styles.listCardIcon}>
@@ -40,7 +40,7 @@ const DeckItem = ({ deck, navigation, cards, cardsPerDeck, openModal }) => {
 					</Text>
 				</View>
 				<View style={styles.row}>
-					<TouchableOpacity onPress={() => navigation.navigate('NewDeck', {text: deck.name, deckId: deck.id, cards})}>
+					<TouchableOpacity onPress={() => navigation.navigate('NewDeck', {text: deck.name, deckId: deck.id, cards, refreshDeckList})}>
 					 {Platform.OS === 'ios'
 					 	? <Foundation name="pencil" size={size.icon.small} color={colors.gray.dark} style={styles.rowIcon} />
 					 	: <MaterialCommunityIcons name="pencil" color={colors.gray.dark} size={size.icon.small} style={styles.rowIcon} />
@@ -93,7 +93,8 @@ DeckItem.propTypes = {
 	cards: PropTypes.object.isRequired,
 	navigation: PropTypes.object.isRequired,
 	cardsPerDeck: PropTypes.object.isRequired,
-	openModal: PropTypes.func.isRequired
+	openModal: PropTypes.func.isRequired,
+	refreshDeckList: PropTypes.func.isRequired
 };
 
 export default DeckItem;
