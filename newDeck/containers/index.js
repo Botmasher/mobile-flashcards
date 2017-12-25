@@ -17,7 +17,7 @@ class NewDeckContainer extends React.Component {
 	}
 	handleInput = text => this.setState({text, edited: true});
 	handleSubmit = () => {
-		if (!this.props.navigation.state.params && this.state.edited) {
+		if (!this.props.navigation.state.params.deckId && this.state.edited) {
 			_addDeck(this.state.text.trim()).then(({id, decks}) => {
 				_fetchCards().then(cards => {
 					this.props.navigation.state.params.refreshDeckList();
@@ -44,7 +44,7 @@ class NewDeckContainer extends React.Component {
 		const { text } = !this.state.edited && navigation.state.params && navigation.state.params.deckId ? navigation.state.params : this.state;
 		return (
 			<ScrollView style={{flex: 1}}>
-				<Header subtitle={navigation.state.params ? `Edit deck` : `Add a deck`} navigation={navigation} showTitle={true} />
+				<Header subtitle={navigation.state.params && navigation.state.params.deckId ? `Edit deck` : `Add a deck`} navigation={navigation} showTitle={true} />
 				<NewDeck
 					navigation={navigation}
 					text={text}

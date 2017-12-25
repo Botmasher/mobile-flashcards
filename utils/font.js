@@ -2,7 +2,7 @@ export const size = {
 	tiny: 8,
 	small: 12,
 	med: 18,
-	large: 24,
+	large: 22,
 	huge: 30,
 	icon: {
 		tiny: 18,

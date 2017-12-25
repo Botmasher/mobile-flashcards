@@ -111,14 +111,15 @@
 - [X] notifications for reminders to study that day
 	- [ ] Logic for push notification has been implemented.
 	- [ ] Push notifications are generated at a specific time if the user hasn't completed at least one quiz for that day.
-	- [X] but on the Slack forum it's mentioned only local notifications needed
+	- [X] check the Slack forum - it's mentioned only local notifications needed
+	- [X] implement local notifications
 - [X] add and update packages
 	- [X] notifications and permissions
 	- [X] reselect
 	- [X] prop-types (already included)
 - [X] again, check the project rubric
 - [X] update README and TODO based on changes made
-- [ ] Emulation and project submission: working on iOS vs Android
+- [X] Emulation and project submission: working on iOS vs Android
 	- posted to Slack forum Sep 26th at 1:15 PM: "Your code needs to work on either Android _or_ iOS. Please specify which platform you've tested in your README and the notes to your reviewer."
 
 ## Feedback (December 23, 2017)
@@ -146,7 +147,7 @@
 	- [X] Pressing the button correctly creates the deck and routes the user to the Individual Deck view for the new deck.
 	- [X] Coming back on the Deck List view doesn't show the created deck unless the user reloads the application. In order to meet this requirement, user should be able to immediately see the newly created deck in the Deck List View.
 - Quiz card animation
-	- [ ] I would suggest adding a remove listener on componentWillUnmount. You can also refer to the link here http://browniefed.com/react-native-animation-book/api/ANIMATED_REMOVE_LISTENERS.html for detailed explanation
+	- [ ] Suggest adding a remove listener on componentWillUnmount. Refer to [this link](http://browniefed.com/react-native-animation-book/api/ANIMATED_REMOVE_LISTENERS.html) for detailed explanation
 
 ## Test
 

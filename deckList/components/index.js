@@ -37,7 +37,7 @@ function DeckList({ decks, cards, navigation, modal, openModal, closeModal, refr
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 7,
+		flex: 6,
 		justifyContent: 'center',
 		alignItems: 'center'
 	},
