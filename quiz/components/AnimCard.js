@@ -5,23 +5,22 @@ class AnimCard extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			width: new Animated.Value(0)
+			width: new Animated.Value(0),
+			update: 0
 		};
+		this._width = 0;
+	}
+	componentWillMount() {
+		this.l = this.state.width.addListener(({value}) => this._width = value);
 	}
 	componentDidMount() {
 		Animated.timing(this.state.width, {
 			toValue: 350,
-			duration: 250
+			duration: 400
 		}).start();
 	}
 	componentWillUnmount() {
-		Animated.sequence([
-			Animated.delay(250),
-			Animated.timing(this.state.width, {
-				toValue: 0,
-				duration: 250
-			})
-		]).start();
+		this.state.width.removeAllListeners();
 	}
   render() {
 		return (

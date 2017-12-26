@@ -1,26 +1,38 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, Animated } from 'react-native';
-import AnimCard from './AnimCard';
+import FlipCard from 'react-native-flip-card';
+//import AnimCard from './AnimCard';
 import AnimCardText from './AnimCardText';
 import PropTypes from 'prop-types';
 import { colors } from '../../utils/colors';
 import { size } from '../../utils/font';
+import { truncate } from '../../utils/helpers';
 
 function FlashCard({ flipped, question, answer, flipCard, updateScore }) {
+	const charLimit = 475;
+	const charShrink = 280;
 	return (
-		<View style={{flex: 1}}>
+		<View style={{flex: 2}}>
 			<TouchableOpacity onPress={() => flipCard()}>
-				<AnimCard flipped={flipped} style={!flipped ? styles.front : styles.back}>
-					<AnimCardText flipped={flipped}>
-						{!flipped
-							? <Text style={[styles.question, {fontSize: question.length < 250 ? size.huge : size.large}]}>{question}</Text>
-							: <Text style={[styles.answer, {fontSize: question.length < 250 ? size.huge : size.large}]}>{answer}</Text>
-						}
-					</AnimCardText>
-				</AnimCard>
+				<FlipCard flip={flipped} clickable={false} style={styles.card}>
+					<View style={styles.front}>
+						<AnimCardText>
+							<Text style={[styles.question, {fontSize: question.length < charShrink ? size.huge : size.large}]}>
+								{truncate(question, charLimit)}
+							</Text>
+						</AnimCardText>
+					</View>
+					<View style={styles.back}>
+						<AnimCardText>
+							<Text style={[styles.answer, {fontSize: answer.length < charShrink ? size.huge : size.large}]}>
+								{truncate(answer, charLimit)}
+							</Text>
+						</AnimCardText>
+					</View>
+				</FlipCard>
 			</TouchableOpacity>
 			<TouchableOpacity onPress={() => flipCard()}>
-				<Text style={{textAlign: 'center', fontSize: size.med, marginBottom: 5}}>Show answer</Text>
+				<Text style={{textAlign: 'center', fontSize: size.med, marginBottom: 5}}>show {flipped ? `question` : `answer`}</Text>
 			</TouchableOpacity>
 			<View style={styles.row}>
 				<TouchableOpacity onPress={() => updateScore(true)} style={{paddingRight: 20}}>
@@ -35,19 +47,27 @@ function FlashCard({ flipped, question, answer, flipCard, updateScore }) {
 }
 
 const styles = StyleSheet.create({
+	card: {
+		marginLeft: 6,
+		marginRight: 6,
+		marginBottom: -42,
+		borderWidth: 0
+	},
 	front: {
-		backgroundColor: colors.primary.dark,
-		height: 400,
-		margin: 10,
 		borderRadius: 14,
+		padding: 10,
+		height: 380,
+		width: 350,
+		backgroundColor: colors.primary.dark,
 		alignItems: 'center',
 		justifyContent: 'center'
 	},
 	back: {
-		backgroundColor: colors.white,
-		height: 400,
-		margin: 10,
 		borderRadius: 14,
+		padding: 10,
+		height: 380,
+		width: 350,
+		backgroundColor: colors.white,
 		alignItems: 'center',
 		justifyContent: 'center'
 	},

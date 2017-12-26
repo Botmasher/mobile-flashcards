@@ -14,12 +14,26 @@ function Quiz({ navigation, deck, cards, score, flipped, numAnswered, updateScor
 		<View style={styles.container}>
 			<Text style={styles.stats}>Cards left in quiz: {cardCount-numAnswered}</Text>
 			{numAnswered < cardCount
-				? <FlashCard flipped={flipped} question={card.question} answer={card.answer} flipCard={flipCard} updateScore={updateScore} />
-				: <Results navigation={navigation} deck={deck} cards={cards} score={score} cardCount={cardCount} resetQuiz={resetQuiz} />
+				? <FlashCard
+						flipped={flipped}
+						question={!flipped ? card.question : ''}
+						answer={flipped ? card.answer : ''}
+						flipCard={flipCard}
+						updateScore={updateScore}
+						toggleShowAnswer={this.toggleShowAnswer}
+					/>
+				: <Results
+						navigation={navigation}
+						deck={deck}
+						cards={cards}
+						score={score}
+						cardCount={cardCount}
+						resetQuiz={resetQuiz}
+					/>
 			}
 		</View>
 	);
-};
+}
 
 const styles = StyleSheet.create({
 	container: {

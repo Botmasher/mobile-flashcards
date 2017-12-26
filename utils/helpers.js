@@ -84,3 +84,16 @@ export function setLocalNotification() {
       }
     });
 }
+
+export function truncate(txt, count) {
+  let truncated;
+  if (txt.length <= count) {
+    truncated = txt;
+  } else {
+    truncated = ['.', '?', ' ', '!', ':', ';', '-'].includes(txt[txt.length-1])
+      ? txt.substring(0, count-1).concat('...')
+      : txt.substring(0, count).concat('...')
+    ;
+  }
+  return truncated;
+}

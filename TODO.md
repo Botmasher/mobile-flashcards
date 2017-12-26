@@ -126,7 +126,7 @@
 - 'Start a quiz' or 'Create New Question' properly routes to the correct views for those activities
 	- [X] In order to achieve proper usability experience with regards to creating a new question, I would suggest popping the current route as Deck View is already on the navigation stack. `this.props.navigation.goBack()`
 - Pressing 'Create Deck' routes the user to the Individual Deck view for the new deck
-	- [ ] Currently, the deck creation routes to the Deck List view which shouldn't be the case. In order to meet this requirement, creating the deck should route the user to the Individual deck view for the new deck.
+	- [X] Currently, the deck creation routes to the Deck List view which shouldn't be the case. In order to meet this requirement, creating the deck should route the user to the Individual deck view for the new deck.
 - [X] `helpers.js`: arrow function for createNotification
 	- good job handling notifications on both platforms 
 - [X] `quiz/components/Results.js`: Restart Quiz to reset state instead of pushing the same route again (usability experience)
@@ -137,7 +137,7 @@
 - [X] `newDeck/containers/index.js`: navigate to the individual Deck view instead of the Deck List view
 	- Required for resubmission!
 - Animating the card
-	- [ ] `quiz/components/index.js`: consider [this flexible flipping animation](https://github.com/moschan/react-native-flip-card)
+	- [X] `quiz/components/index.js`: consider [this flexible flipping animation](https://github.com/moschan/react-native-flip-card)
 	- [ ] `quiz/components/AnimCardText.js`: add a remove listener on `componentWillUnmount()`
 	- see [this detailed explanation](http://browniefed.com/react-native-animation-book/api/ANIMATED_REMOVE_LISTENERS.html) to learn about animated remove listeners	
 - [ ] learn more about writing READMEs in [this course](https://www.udacity.com/course/writing-readmes--ud777)

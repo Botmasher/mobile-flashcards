@@ -38,6 +38,7 @@ FlashCards is built atop the following dependencies:
 - [React Navigation](https://github.com/react-community/react-navigation)
 - [Reselect](https://github.com/reactjs/reselect)
 - [uuid](https://www.npmjs.com/package/uuid)
+- [react-native-flip-card](https://github.com/moschan/react-native-flip-card)
 
 ## App Structure
 FlashCards is built out of React Native components and leverages local storage.

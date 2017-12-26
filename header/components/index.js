@@ -3,12 +3,10 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { colors } from '../../utils/colors';
 import { size } from '../../utils/font';
+import { truncate } from '../../utils/helpers';
 
 function Header({ navigation, subtitle, showTitle }) {
-	const truncatedSubtitle = ['.', '?', ' ', '!', ':', ';'].includes(subtitle[subtitle.length-1])
-		? subtitle.substring(0, 28).concat('...')
-		: subtitle.substring(0, 29).concat('...')
-	;
+	const truncatedSubtitle = truncate(subtitle, 29);
 	return (
 		<View style={styles.container}>
 			{showTitle && (

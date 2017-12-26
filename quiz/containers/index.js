@@ -15,9 +15,9 @@ class QuizContainer extends React.Component {
 	}
 	updateScore = (isCorrect) => {
 		this.setState((prevState) => ({
+			flipped: false,
 			score: isCorrect ? prevState.score+1 : prevState.score,
-			numAnswered: prevState.numAnswered+1,
-			flipped: false
+			numAnswered: prevState.numAnswered+1
 		}));
 	};
 	flipCard = () => {
