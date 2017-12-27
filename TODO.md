@@ -148,31 +148,29 @@
 	- [X] Coming back on the Deck List view doesn't show the created deck unless the user reloads the application. In order to meet this requirement, user should be able to immediately see the newly created deck in the Deck List View.
 - Quiz card animation
 	- [ ] Suggest adding a remove listener on componentWillUnmount. Refer to [this link](http://browniefed.com/react-native-animation-book/api/ANIMATED_REMOVE_LISTENERS.html) for detailed explanation
+	- [X] instead use react-native-flip-card for now
 
 ## Test
 
 ## Update and go beyond
-- [ ] SortPicker not clearly interactable - toggle as larger view/modal below instead of cropped and placed in top right tools
+- [X] SortPicker not clearly interactable - toggle as larger view/modal below instead of cropped and placed in top right tools
 - [ ] alternative to UUIDs since Crypto not supported - Crypto Browserify?
-- [ ] DeckList items: split 2/3 R deck touch to edit, 1/3 L trash can touch to delete
 - [ ] delay the empty deck message in DeckList when app starts
 - [ ] cards list (Deck view) has item border width expand when more text added; take up whole width
 - [ ] ability to add card to multiple decks
 - [ ] sorting options for decks and cards using existing selectors
 - [ ] naming/string collisions with currently existing decks and cards
-- [ ] animate card flip in Quiz
-	- [ ] simulate by squashing width quickly full to 0 to full
-	- [ ] have question text fade out before then answer fade in after "flip"
-- [ ] better methods for truncated text
-	- [ ] subtitles passed to Header
-	- [ ] questions on cards in Quiz
-	- [ ] also adjust Quiz card text size based on question/answer length
-- [ ] server push notifications
 - [ ] more consistent UI for crud operations
+	- [ ] DeckList items: split 2/3 R deck touch to edit, 1/3 L trash can touch to delete
 	- [ ] edit a deck in Deck
 	- [ ] delete a deck in Deck
 	- [X] edit a card in Deck
 	- [X] delete a card in Deck
+- [ ] animate card flip in Quiz
+- [ ] better methods for truncated text
+	- [ ] subtitles passed to Header
+	- [ ] questions and answers on cards in Quiz
+- [ ] server push notifications
 - [ ] decks can currently have the same name
 - [ ] cards in a deck can currently have the same question
 - [ ] when you add/delete a card, it redirects back to the deck selection screen

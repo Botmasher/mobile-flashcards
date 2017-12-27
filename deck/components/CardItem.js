@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Platform, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 import { FontAwesome, MaterialCommunityIcons, Foundation, Ionicons } from '@expo/vector-icons';
 import { colors } from '../../utils/colors';
@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		marginTop: 20,
 		padding: 6,
+		width: Dimensions.get('window').width * 0.95,
 		backgroundColor: colors.white,
 		borderRadius: 12
 	},

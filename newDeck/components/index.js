@@ -28,7 +28,7 @@ function NewDeck({ navigation, text, message, handleInput, handleSubmit }) {
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 8
+		flex: 7
 	}
 });
 

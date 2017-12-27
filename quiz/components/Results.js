@@ -27,14 +27,14 @@ const styles = StyleSheet.create({
 		alignItems: 'center'
 	},
 	score: {
-		fontSize: 150,
+		fontSize: 128,
 		color: colors.secondary.dark,
-		marginBottom: 25
+		marginBottom: 23
 	},
 	button: {
 		fontSize: size.huge,
 		color: colors.primary.dark,
-		marginBottom: 25
+		marginBottom: 23
 	}
 });
 

@@ -38,7 +38,9 @@ class DeckListContainer extends React.Component {
 	};
 	refresh = () => {
 		_fetchDecks()
-			.then(decks => this.setState({decks: selectDecksSortedNum({decks, property: 'timestamp', ascending: true}).filter(deck => deck.id)}))
+			.then(decks => this.setState({
+				decks: selectDecksSortedNum({decks, property: 'timestamp', ascending: true}).filter(deck => deck.id)
+			}))
 			.then(() => _fetchCards()
 				.then(cards => this.setState({cards}))
 			);
@@ -91,7 +93,7 @@ class DeckListContainer extends React.Component {
 				</View>
 				{Object.keys(decks).length <= 0
 					? <View style={{flex: 6, alignItems: 'center', marginTop: 100}}>
-							<TouchableOpacity onPress={() => navigation.navigate('NewDeck')}>
+							<TouchableOpacity onPress={() => navigation.navigate('NewDeck', {refreshDeckList: this.refresh})}>
 								<Text style={{fontSize: size.huge, textAlign: 'center'}}>No cards yet.</Text>
 								<Text style={{fontSize: size.huge, textAlign: 'center', color: colors.secondary.dark}}>Make your first deck!</Text>
 							</TouchableOpacity>

@@ -39,7 +39,7 @@ function Deck({ deck, allCards, cardsInDeck, navigation, modal, openModal, close
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 8,
+		flex: 7,
 		alignItems: 'center',
 		justifyContent: 'center'
 	},

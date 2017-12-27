@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, StyleSheet, Animated } from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
 import FlipCard from 'react-native-flip-card';
 //import AnimCard from './AnimCard';
 import AnimCardText from './AnimCardText';
@@ -15,14 +15,14 @@ function FlashCard({ flipped, question, answer, flipCard, updateScore }) {
 		<View style={{flex: 2}}>
 			<TouchableOpacity onPress={() => flipCard()}>
 				<FlipCard flip={flipped} clickable={false} style={styles.card}>
-					<View style={styles.front}>
+					<View style={[styles.face, styles.front]}>
 						<AnimCardText>
 							<Text style={[styles.question, {fontSize: question.length < charShrink ? size.huge : size.large}]}>
 								{truncate(question, charLimit)}
 							</Text>
 						</AnimCardText>
 					</View>
-					<View style={styles.back}>
+					<View style={[styles.face, styles.back]}>
 						<AnimCardText>
 							<Text style={[styles.answer, {fontSize: answer.length < charShrink ? size.huge : size.large}]}>
 								{truncate(answer, charLimit)}
@@ -53,23 +53,19 @@ const styles = StyleSheet.create({
 		marginBottom: -42,
 		borderWidth: 0
 	},
-	front: {
+	face: {
 		borderRadius: 14,
 		padding: 10,
-		height: 380,
-		width: 350,
-		backgroundColor: colors.primary.dark,
+		height: Dimensions.get('window').height * 0.58,
+		width: Dimensions.get('window').width * 0.95,
 		alignItems: 'center',
-		justifyContent: 'center'
+		justifyContent: 'center'	
+	},
+	front: {
+		backgroundColor: colors.primary.dark
 	},
 	back: {
-		borderRadius: 14,
-		padding: 10,
-		height: 380,
-		width: 350,
-		backgroundColor: colors.white,
-		alignItems: 'center',
-		justifyContent: 'center'
+		backgroundColor: colors.white
 	},
 	question: {
 		color: colors.white
